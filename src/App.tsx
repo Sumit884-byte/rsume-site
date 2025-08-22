@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { Briefcase, GraduationCap, Code, Languages, Mail, Github, Linkedin, Star } from "lucide-react"
 import { motion } from "framer-motion"
 import "./App.css"
@@ -75,7 +77,33 @@ const socialLinks = [
 
 // --- Enhanced Components ---
 
-const Section = ({ id, title, icon: Icon, children }) => (
+interface SectionProps {
+  id: string
+  title: string
+  icon: React.ComponentType<{ className?: string }>
+  children: React.ReactNode
+}
+
+interface SkillBadgeProps {
+  skill: string
+  index: number
+}
+
+interface ProjectCardProps {
+  title: string
+  description: string[]
+  tags: string[]
+  index: number
+}
+
+interface LanguageCardProps {
+  lang: string
+  level: string
+  proficiency: number
+  index: number
+}
+
+const Section = ({ id, title, icon: Icon, children }: SectionProps) => (
   <motion.section
     id={id}
     className="mb-20"
@@ -94,7 +122,7 @@ const Section = ({ id, title, icon: Icon, children }) => (
   </motion.section>
 )
 
-const SkillBadge = ({ skill, index }) => (
+const SkillBadge = ({ skill, index }: SkillBadgeProps) => (
   <motion.span
     className="px-4 py-2 text-sm rounded-full bg-gradient-to-r from-neutral-800 to-neutral-900 border border-neutral-700 text-neutral-300 hover:border-cyan-500/50 hover:text-cyan-300 transition-all duration-300 cursor-default"
     initial={{ opacity: 0, scale: 0.8 }}
@@ -107,7 +135,7 @@ const SkillBadge = ({ skill, index }) => (
   </motion.span>
 )
 
-const ProjectCard = ({ title, description, tags, index }) => (
+const ProjectCard = ({ title, description, tags, index }: ProjectCardProps) => (
   <motion.div
     className="group rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 shadow-2xl border border-neutral-800 hover:border-cyan-500/30 transition-all duration-500 hover:shadow-cyan-500/10"
     initial={{ opacity: 0, y: 30 }}
@@ -120,12 +148,12 @@ const ProjectCard = ({ title, description, tags, index }) => (
       <h3 className="font-bold text-xl text-white group-hover:text-cyan-300 transition-colors">{title}</h3>
     </div>
     <ul className="list-disc ml-5 space-y-3 text-neutral-400 leading-relaxed">
-      {description.map((point, pointIndex) => (
+      {description.map((point: string, pointIndex: number) => (
         <li key={pointIndex}>{point}</li>
       ))}
     </ul>
     <div className="flex flex-wrap gap-2 mt-6">
-      {tags.map((tag, tagIndex) => (
+      {tags.map((tag: string, tagIndex: number) => (
         <span
           key={tag}
           className="px-3 py-1 text-xs rounded-full bg-cyan-900/30 text-cyan-300 border border-cyan-800/50 font-medium"
@@ -137,7 +165,7 @@ const ProjectCard = ({ title, description, tags, index }) => (
   </motion.div>
 )
 
-const LanguageCard = ({ lang, level, proficiency, index }) => (
+const LanguageCard = ({ lang, level, proficiency, index }: LanguageCardProps) => (
   <motion.div
     className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800 p-6 rounded-xl hover:border-cyan-500/30 transition-all duration-300"
     initial={{ opacity: 0, scale: 0.9 }}
@@ -164,7 +192,7 @@ const LanguageCard = ({ lang, level, proficiency, index }) => (
 // --- Main App Component ---
 
 export default function App() {
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId.toLowerCase())?.scrollIntoView({
       behavior: "smooth",
       block: "start",
