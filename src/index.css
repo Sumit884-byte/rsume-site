@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Your custom CSS or theme declarations go here */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
