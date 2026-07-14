@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#FFE566"/>
+  <ellipse cx="32" cy="40" rx="22" ry="12" fill="url(#cloud)"/>
+  <circle cx="22" cy="32" r="10" fill="url(#cloud)"/>
+  <circle cx="38" cy="30" r="12" fill="url(#cloud)"/>
+  <path d="M38 18 L44 34 L36 34 L40 48 L30 30 L38 30 Z" fill="#FFD93D" stroke="#E6A000" stroke-width="1.5" stroke-linejoin="round"/>
+  <circle cx="32" cy="32" r="4" fill="#89C2F0" opacity="0.9"/>
+  <defs>
+    <linearGradient id="cloud" x1="16" y1="24" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E8F4FC"/>
+    </linearGradient>
+  </defs>
+</svg>
