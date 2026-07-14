@@ -189,10 +189,14 @@ async function main() {
   const existing = readExistingContent()
   let projects = existing?.projects ?? []
   let linkedinPosts = existing?.linkedinPosts ?? []
+  let syncedAt = existing?.syncedAt ?? new Date().toISOString()
+  let githubSynced = false
+  let linkedinSynced = false
 
   try {
     console.log(`Syncing GitHub projects for @${GITHUB_USERNAME}...`)
     projects = await fetchGitHubProjects()
+    githubSynced = true
     console.log(`Found ${projects.length} public repositories.`)
   } catch (error) {
     console.warn("GitHub sync failed:", error.message)
@@ -203,14 +207,19 @@ async function main() {
     const freshPosts = await fetchLinkedInPosts()
     if (freshPosts.length > 0) {
       linkedinPosts = freshPosts
+      linkedinSynced = true
     }
     console.log(`Found ${linkedinPosts.length} LinkedIn posts.`)
   } catch (error) {
     console.warn("LinkedIn sync failed:", error.message)
   }
 
+  if (githubSynced || linkedinSynced) {
+    syncedAt = new Date().toISOString()
+  }
+
   const payload = {
-    syncedAt: new Date().toISOString(),
+    syncedAt,
     githubUsername: GITHUB_USERNAME,
     linkedinUsername: LINKEDIN_USERNAME,
     profileImage: existing?.profileImage ?? PROFILE_IMAGE,

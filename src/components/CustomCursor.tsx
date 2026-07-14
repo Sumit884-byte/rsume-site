@@ -29,7 +29,7 @@ export default function CustomCursor() {
 
     const onMove = (e: MouseEvent) => {
       pos.current = { x: e.clientX, y: e.clientY }
-      if (!visible) setVisible(true)
+      setVisible(true)
     }
 
     const onEnter = () => setVisible(true)
@@ -79,7 +79,7 @@ export default function CustomCursor() {
       document.removeEventListener("mouseenter", onEnter)
       document.removeEventListener("mouseleave", onLeave)
     }
-  }, [visible])
+  }, [])
 
   if (!active) return null
 

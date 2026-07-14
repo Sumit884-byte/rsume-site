@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 /* ── Arka custom cursor ── */
@@ -189,7 +190,168 @@ body {
     "contact";
 }
 
-@media (min-width: 768px) {
+/* ── Responsive layout tokens ── */
+.app-content {
+  padding: 1rem;
+}
+
+.hero-content {
+  padding: 1.5rem 1.25rem 1rem;
+}
+
+.hero-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.hero-subtitle {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2d3436;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  color: #2d3436;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.skill-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.skill-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #2d3436;
+  line-height: 1.25;
+}
+
+.project-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1rem;
+  padding-block: 0.5rem;
+  min-height: 140px;
+}
+
+.bento-hero {
+  min-height: 300px;
+}
+
+@media (max-width: 767px) {
+  .phone-mockup {
+    width: 96px;
+  }
+
+  .float-decor {
+    display: none;
+  }
+}
+
+/* Tablet (768–1023px) — Arka 2-column bento */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-content {
+    padding: 1.5rem;
+  }
+
+  .glass-shell {
+    padding: 1.25rem;
+    border-radius: 32px;
+  }
+
+  .glass-card {
+    padding: 1.15rem;
+  }
+
+  .bento-grid {
+    gap: 1.15rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "hero hero"
+      "skills arka"
+      "projects projects"
+      "contact contact";
+  }
+
+  .bento-hero {
+    min-height: 340px;
+  }
+
+  .hero-content {
+    padding: 1.75rem 1.5rem 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.25rem, 5vw, 2.75rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-scene {
+    min-height: 160px;
+  }
+
+  .phone-mockup {
+    width: 118px;
+  }
+
+  .project-row {
+    gap: 1.5rem;
+    min-height: 150px;
+  }
+
+  .skills-grid {
+    gap: 0.65rem;
+  }
+
+  .skill-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .skill-label {
+    font-size: 0.6875rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+}
+
+/* Desktop (1024px+) — full 3-column bento */
+@media (min-width: 1024px) {
+  .app-content {
+    padding: 3rem;
+  }
+
+  .glass-shell {
+    padding: 1.5rem;
+    border-radius: 40px;
+  }
+
+  .phone-mockup {
+    width: 130px;
+  }
+
   .bento-grid {
     gap: 1.25rem;
     grid-template-columns: 1.35fr 1fr 0.9fr;
@@ -197,6 +359,35 @@ body {
     grid-template-areas:
       "hero skills arka"
       "hero projects contact";
+  }
+
+  .bento-hero {
+    min-height: 480px;
+  }
+
+  .hero-title {
+    font-size: 3.4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .project-row {
+    gap: 1.5rem;
+  }
+
+  .skill-icon {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .skill-label {
+    font-size: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.125rem;
   }
 }
 
@@ -413,16 +604,108 @@ body {
 }
 
 .decor-star {
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(135deg, #89c2f0, #4aa3cf);
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  box-shadow: 3px 4px 0 rgba(74, 163, 207, 0.4);
+  --star-shape: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  --star-depth-1: #6bb5e8;
+  --star-depth-2: #4aa3cf;
+  --star-depth-3: #358fbe;
+  --star-depth-4: #2a7aab;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  clip-path: var(--star-shape);
+  background: linear-gradient(145deg, #ffffff 0%, #d4efff 22%, #89c2f0 52%, #5eb0e8 78%, #4aa3cf 100%);
+  filter:
+    drop-shadow(1px 1px 0 var(--star-depth-1))
+    drop-shadow(2px 2px 0 var(--star-depth-2))
+    drop-shadow(3px 3px 0 var(--star-depth-3))
+    drop-shadow(4px 5px 0 var(--star-depth-4))
+    drop-shadow(6px 9px 14px rgba(45, 52, 54, 0.22));
+  transform: rotate(-8deg);
+}
+
+.decor-star::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: var(--star-shape);
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.2) 38%,
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+.decor-star::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: var(--star-shape);
+  background: linear-gradient(
+    320deg,
+    transparent 45%,
+    rgba(45, 52, 54, 0.12) 72%,
+    rgba(45, 52, 54, 0.22) 100%
+  );
+  pointer-events: none;
 }
 
 .decor-star-green {
-  background: linear-gradient(135deg, #caffbf, #6bcb77);
-  box-shadow: 3px 4px 0 rgba(107, 203, 119, 0.4);
+  --star-depth-1: #a8e8b0;
+  --star-depth-2: #6bcb77;
+  --star-depth-3: #52b85f;
+  --star-depth-4: #3d9f4a;
+  background: linear-gradient(145deg, #ffffff 0%, #e5ffd8 22%, #caffbf 52%, #9ee8a8 78%, #6bcb77 100%);
+  transform: rotate(10deg);
+}
+
+/* ── Spline 3D stars ── */
+.spline-star {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.spline-star__placeholder {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.spline-star__canvas,
+.spline-float-layer__canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.spline-star__canvas.is-loaded,
+.spline-float-layer__canvas.is-loaded {
+  opacity: 1;
+}
+
+.spline-star__canvas canvas,
+.spline-float-layer__canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.spline-float-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.spline-float-layer__canvas {
+  width: 100%;
+  height: 100%;
 }
 
 .decor-moon {
@@ -625,6 +908,11 @@ body {
   }
 
   .arka-cursor {
+    display: none !important;
+  }
+
+  .spline-star,
+  .spline-float-layer {
     display: none !important;
   }
 

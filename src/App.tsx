@@ -5,6 +5,9 @@ import autoContent from "./data/auto-content.json"
 import { ARKA_REPO, arkaLinks } from "./config/arka"
 import { fetchGitHubProjects, mergeAutoContent } from "./lib/fetch-content"
 import type { AutoContent, GitHubProject } from "./types/content"
+import SplineFloatLayer from "./components/SplineFloatLayer"
+import SplineStar from "./components/SplineStar"
+import { splineScenes } from "./config/spline"
 import "./App.css"
 
 const PROJECT_UI_GRADIENTS = [
@@ -48,6 +51,8 @@ function MeshBackground() {
 }
 
 function FloatingDecor() {
+  const useFloatScene = Boolean(splineScenes.float)
+
   const items = [
     { type: "star", className: "top-[8%] left-[6%]", delay: 0 },
     { type: "bracket", className: "top-[18%] right-[8%]", text: "</>", delay: 0.2 },
@@ -59,20 +64,31 @@ function FloatingDecor() {
 
   return (
     <>
-      {items.map((item, i) => (
-        <motion.div
-          key={i}
-          className={`float-decor ${item.className}`}
-          initial={{ opacity: 0, scale: 0.6 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6 + item.delay, duration: 0.5 }}
-        >
-          {item.type === "star" && <div className="decor-star" />}
-          {item.type === "star-green" && <div className="decor-star decor-star-green" />}
-          {item.type === "moon" && <div className="decor-moon" />}
-          {item.type === "bracket" && <span className="decor-bracket">{item.text}</span>}
-        </motion.div>
-      ))}
+      <SplineFloatLayer />
+      {items.map((item, i) => {
+        if (useFloatScene && (item.type === "star" || item.type === "star-green" || item.type === "moon")) {
+          return null
+        }
+
+        return (
+          <motion.div
+            key={i}
+            className={`float-decor ${item.className}`}
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6 + item.delay, duration: 0.5 }}
+          >
+            {item.type === "star" && (
+              <SplineStar scene={splineScenes.starBlue} variant="blue" />
+            )}
+            {item.type === "star-green" && (
+              <SplineStar scene={splineScenes.starGreen} variant="green" />
+            )}
+            {item.type === "moon" && <div className="decor-moon" />}
+            {item.type === "bracket" && <span className="decor-bracket">{item.text}</span>}
+          </motion.div>
+        )
+      })}
     </>
   )
 }
@@ -93,7 +109,7 @@ function PhoneMockup({
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`phone-mockup block w-[110px] md:w-[130px] aspect-[9/18] p-2.5 shrink-0 ${variant === 1 ? "phone-mockup-alt" : ""}`}
+      className={`phone-mockup block aspect-[9/18] p-2.5 shrink-0 ${variant === 1 ? "phone-mockup-alt" : ""}`}
       style={{ rotate: `${tilt}deg` }}
       whileHover={{ scale: 1.06, rotate: tilt + 3 }}
       transition={{ type: "spring", stiffness: 260, damping: 18 }}
@@ -137,11 +153,6 @@ function QRCode({ url }: { url: string }) {
           loading="lazy"
         />
       </div>
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-md">
-          <Linkedin className="w-5 h-5 text-[#0077b5]" />
-        </div>
-      </div>
     </div>
   )
 }
@@ -172,24 +183,22 @@ export default function App() {
       <MeshBackground />
       <FloatingDecor />
 
-      <div className="app-content relative z-10 min-h-screen flex items-center justify-center p-4 md:p-8 lg:p-12 pointer-events-none">
+      <div className="app-content relative z-10 min-h-screen flex items-center justify-center pointer-events-none">
         <div className="w-full max-w-6xl">
           <motion.div
-            className="glass-shell p-4 md:p-6 pointer-events-auto"
+            className="glass-shell pointer-events-auto"
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <div className="bento-grid">
               {/* Hero — large left card */}
-              <GlassCard className="bento-hero !p-0 overflow-hidden min-h-[380px] md:min-h-[480px] flex flex-col" delay={0.1}>
-                <div className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-4 text-center">
-                  <h1 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-3d-rainbow tracking-tight mb-1">
-                    SUMIT.WEB
-                  </h1>
-                  <p className="font-display text-lg md:text-xl font-semibold text-[#2d3436] mb-6">Dream Coder</p>
+              <GlassCard className="bento-hero !p-0 overflow-hidden flex flex-col" delay={0.1}>
+                <div className="hero-content flex-1 flex flex-col items-center justify-center text-center">
+                  <h1 className="hero-title text-3d-rainbow tracking-tight">SUMIT.WEB</h1>
+                  <p className="hero-subtitle">Dream Coder</p>
 
-                  <div className="hero-scene w-full flex-1 min-h-[180px]">
+                  <div className="hero-scene w-full flex-1">
                     <div className="hero-cloud" aria-hidden="true" />
                     <div className="hero-figure">
                       <img
@@ -207,10 +216,8 @@ export default function App() {
 
               {/* Skills — top middle */}
               <GlassCard className="bento-skills bg-gradient-to-br from-white/55 to-[#caffbf]/25" delay={0.2}>
-                <h2 className="font-display text-base md:text-lg font-bold text-[#2d3436] mb-4 tracking-wide">
-                  SKILLS
-                </h2>
-                <div className="grid grid-cols-3 gap-2 md:gap-3">
+                <h2 className="section-title">SKILLS</h2>
+                <div className="skills-grid">
                   {featuredSkills.map(({ label, icon: Icon, gradient }, i) => (
                     <motion.div
                       key={label}
@@ -221,11 +228,11 @@ export default function App() {
                       whileHover={{ y: -4 }}
                     >
                       <div
-                        className={`clay-icon w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br ${gradient} flex items-center justify-center`}
+                        className={`clay-icon skill-icon bg-gradient-to-br ${gradient} flex items-center justify-center`}
                       >
                         <Icon className="w-7 h-7 text-[#2d3436]/75" strokeWidth={2.2} />
                       </div>
-                      <span className="text-[10px] md:text-xs font-bold text-[#2d3436] leading-tight">{label}</span>
+                      <span className="skill-label">{label}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -234,20 +241,18 @@ export default function App() {
               {/* Projects — bottom middle */}
               <GlassCard className="bento-projects bg-gradient-to-br from-white/50 to-[#ffc8dd]/20" delay={0.25}>
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="font-display text-base md:text-lg font-bold text-[#2d3436] tracking-wide">
-                    PROJECTS
-                  </h2>
+                  <h2 className="section-title !mb-0">PROJECTS</h2>
                   <a
                     href={`https://github.com/${content.githubUsername}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] md:text-xs font-bold text-[#636e72] hover:text-[#2d3436] flex items-center gap-1"
+                    className="text-[10px] font-bold text-[#636e72] hover:text-[#2d3436] flex items-center gap-1"
                   >
                     View all
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
-                <div className="flex items-end justify-center gap-4 md:gap-6 py-2 min-h-[160px]">
+                <div className="project-row">
                   {phoneProjects.length > 0 ? (
                     phoneProjects.map((project, i) => (
                       <PhoneMockup
@@ -259,8 +264,8 @@ export default function App() {
                     ))
                   ) : (
                     <>
-                      <div className="phone-mockup w-[110px] aspect-[9/18] opacity-40" />
-                      <div className="phone-mockup phone-mockup-alt w-[110px] aspect-[9/18] opacity-40" />
+                      <div className="phone-mockup aspect-[9/18] opacity-40" />
+                      <div className="phone-mockup phone-mockup-alt aspect-[9/18] opacity-40" />
                     </>
                   )}
                 </div>
