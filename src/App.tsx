@@ -1,13 +1,9 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react"
+import { useMemo, type ReactNode } from "react"
 import { Bot, Brain, Code2, ExternalLink, Github, Linkedin, Mail, Zap } from "lucide-react"
 import { motion } from "framer-motion"
 import autoContent from "./data/auto-content.json"
 import { ARKA_REPO, arkaLinks } from "./config/arka"
-import { fetchGitHubProjects, mergeAutoContent } from "./lib/fetch-content"
 import type { AutoContent, GitHubProject } from "./types/content"
-import SplineFloatLayer from "./components/SplineFloatLayer"
-import SplineStar from "./components/SplineStar"
-import { splineScenes } from "./config/spline"
 import "./App.css"
 
 const PROJECT_UI_GRADIENTS = [
@@ -51,8 +47,6 @@ function MeshBackground() {
 }
 
 function FloatingDecor() {
-  const useFloatScene = Boolean(splineScenes.float)
-
   const items = [
     { type: "star", className: "top-[8%] left-[6%]", delay: 0 },
     { type: "bracket", className: "top-[18%] right-[8%]", text: "</>", delay: 0.2 },
@@ -64,31 +58,20 @@ function FloatingDecor() {
 
   return (
     <>
-      <SplineFloatLayer />
-      {items.map((item, i) => {
-        if (useFloatScene && (item.type === "star" || item.type === "star-green" || item.type === "moon")) {
-          return null
-        }
-
-        return (
-          <motion.div
-            key={i}
-            className={`float-decor ${item.className}`}
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6 + item.delay, duration: 0.5 }}
-          >
-            {item.type === "star" && (
-              <SplineStar scene={splineScenes.starBlue} variant="blue" />
-            )}
-            {item.type === "star-green" && (
-              <SplineStar scene={splineScenes.starGreen} variant="green" />
-            )}
-            {item.type === "moon" && <div className="decor-moon" />}
-            {item.type === "bracket" && <span className="decor-bracket">{item.text}</span>}
-          </motion.div>
-        )
-      })}
+      {items.map((item, i) => (
+        <motion.div
+          key={i}
+          className={`float-decor ${item.className}`}
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6 + item.delay, duration: 0.5 }}
+        >
+          {item.type === "star" && <div className="decor-star" />}
+          {item.type === "star-green" && <div className="decor-star decor-star-green" />}
+          {item.type === "moon" && <div className="decor-moon" />}
+          {item.type === "bracket" && <span className="decor-bracket">{item.text}</span>}
+        </motion.div>
+      ))}
     </>
   )
 }
@@ -166,14 +149,7 @@ function sortProjects(projects: GitHubProject[]) {
 }
 
 export default function App() {
-  const [content, setContent] = useState<AutoContent>(autoContent as AutoContent)
-
-  useEffect(() => {
-    fetchGitHubProjects()
-      .then((projects) => setContent((current) => mergeAutoContent(projects, current)))
-      .catch(() => {})
-  }, [])
-
+  const content = autoContent as AutoContent
   const projects = useMemo(() => sortProjects(content.projects), [content.projects])
   const phoneProjects = projects.filter((p) => p.url !== ARKA_REPO).slice(0, 2)
   const linkedInUrl = `https://linkedin.com/in/${content.linkedinUsername}`

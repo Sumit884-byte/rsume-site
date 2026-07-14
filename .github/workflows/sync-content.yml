@@ -23,11 +23,9 @@ jobs:
         with:
           node-version: 22
 
-      - name: Sync GitHub and LinkedIn content
+      - name: Sync GitHub projects
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
-          LINKEDIN_RSS_URL: ${{ secrets.LINKEDIN_RSS_URL }}
         run: node scripts/sync-content.mjs
 
       - name: Commit updated content
@@ -38,6 +36,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No content changes to commit."
           else
-            git commit -m "chore: sync GitHub projects and LinkedIn posts"
+            git commit -m "chore: sync GitHub projects"
             git push
           fi

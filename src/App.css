@@ -660,54 +660,6 @@ body {
   transform: rotate(10deg);
 }
 
-/* ── Spline 3D stars ── */
-.spline-star {
-  position: relative;
-  width: 44px;
-  height: 44px;
-  overflow: hidden;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.spline-star__placeholder {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-}
-
-.spline-star__canvas,
-.spline-float-layer__canvas {
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.spline-star__canvas.is-loaded,
-.spline-float-layer__canvas.is-loaded {
-  opacity: 1;
-}
-
-.spline-star__canvas canvas,
-.spline-float-layer__canvas canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.spline-float-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 4;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.spline-float-layer__canvas {
-  width: 100%;
-  height: 100%;
-}
-
 .decor-moon {
   width: 32px;
   height: 32px;
@@ -908,11 +860,6 @@ body {
   }
 
   .arka-cursor {
-    display: none !important;
-  }
-
-  .spline-star,
-  .spline-float-layer {
     display: none !important;
   }
 
