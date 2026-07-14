@@ -1,0 +1,149 @@
+{
+  "syncedAt": "2026-07-14T11:27:21.155Z",
+  "githubUsername": "Sumit884-byte",
+  "linkedinUsername": "sumit0rn",
+  "projects": [
+    {
+      "title": "Arka",
+      "description": [
+        "Natural-language AI agent for your terminal — skills, voice, web answers, and system automation."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/arka",
+      "stars": 2,
+      "updatedAt": "2026-07-14T11:09:02Z",
+      "source": "github"
+    },
+    {
+      "title": "Docs",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "MDX"
+      ],
+      "url": "https://github.com/Sumit884-byte/docs",
+      "stars": 0,
+      "updatedAt": "2026-07-10T06:31:58Z",
+      "source": "github"
+    },
+    {
+      "title": "Youtube Bulk Downloader",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/youtube_bulk_downloader",
+      "stars": 1,
+      "updatedAt": "2026-06-13T08:09:25Z",
+      "source": "github"
+    },
+    {
+      "title": "Air Pen",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/air_pen",
+      "stars": 0,
+      "updatedAt": "2026-04-15T11:01:40Z",
+      "source": "github"
+    },
+    {
+      "title": "Automations",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/automations",
+      "stars": 0,
+      "updatedAt": "2026-04-14T16:30:34Z",
+      "source": "github"
+    },
+    {
+      "title": "Stock Analyzer",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/stock_analyzer",
+      "stars": 0,
+      "updatedAt": "2026-04-14T15:49:27Z",
+      "source": "github"
+    },
+    {
+      "title": "Nvidia Nemotron Model Reasoning Challenge",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Jupyter Notebook"
+      ],
+      "url": "https://github.com/Sumit884-byte/nvidia-nemotron-model-reasoning-challenge",
+      "stars": 0,
+      "updatedAt": "2026-03-21T10:13:31Z",
+      "source": "github"
+    },
+    {
+      "title": "Threejs Demo",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "TypeScript"
+      ],
+      "url": "https://github.com/Sumit884-byte/threejs_demo",
+      "stars": 1,
+      "updatedAt": "2026-02-23T11:17:49Z",
+      "source": "github"
+    },
+    {
+      "title": "Gmail Notifier",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/gmail_notifier",
+      "stars": 0,
+      "updatedAt": "2026-02-16T14:10:01Z",
+      "source": "github"
+    },
+    {
+      "title": "Dodo",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [],
+      "url": "https://github.com/Sumit884-byte/dodo",
+      "stars": 0,
+      "updatedAt": "2025-10-02T14:42:56Z",
+      "source": "github"
+    },
+    {
+      "title": "Charts",
+      "description": [
+        "all charts demo app."
+      ],
+      "tags": [
+        "TypeScript"
+      ],
+      "url": "https://github.com/Sumit884-byte/charts",
+      "stars": 0,
+      "updatedAt": "2025-08-21T19:10:29Z",
+      "source": "github"
+    }
+  ],
+  "linkedinPosts": []
+}

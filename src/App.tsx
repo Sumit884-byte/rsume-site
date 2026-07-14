@@ -1,13 +1,17 @@
 "use client"
 
 import type React from "react"
+import { useEffect, useState } from "react"
 
-import { Briefcase, GraduationCap, Code, Languages, Mail, Github, Linkedin, Star } from "lucide-react"
+import { Briefcase, GraduationCap, Code, Languages, Mail, Github, Linkedin, Star, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
+import autoContent from "./data/auto-content.json"
+import { fetchGitHubProjects, mergeAutoContent } from "./lib/fetch-content"
+import type { AutoContent, GitHubProject, LinkedInPost } from "./types/content"
 import "./App.css"
 
 // --- Data ---
-const navLinks = ["Objective", "Skills", "Projects", "Education", "Languages"]
+const navLinks = ["Objective", "Skills", "Projects", "LinkedIn", "Education", "Languages"]
 
 const skills = {
   "Languages & Frameworks": ["Python", "Java", "JavaScript", "React", "FastAPI", "HTML", "CSS", "Tailwind CSS"],
@@ -22,36 +26,6 @@ const skills = {
     "Semantic Search",
   ],
 }
-
-const projects = [
-  {
-    title: "PDF Processing and OCR Pipelines",
-    description: [
-      "Built Python scripts to extract and classify words from PDFs, including scanned documents using OCR.",
-      "Utilized PaddleOCR, OCRmyPDF, and Google Cloud Vision for robust text extraction and cleanup.",
-      "Automated the entire PDF processing workflow: page classification, keyword tagging, and data extraction.",
-    ],
-    tags: ["Python", "OCR", "Automation", "Google Cloud Vision"],
-  },
-  {
-    title: "AI-Powered PDF Search & Keyword Matching",
-    description: [
-      "Implemented a semantic search engine for PDF documents using vector embeddings and FAISS.",
-      "Combined classical keyword matching with AI-based semantic search to significantly improve recall and precision in document retrieval.",
-      "Developed a FastAPI backend to serve the search API.",
-    ],
-    tags: ["Python", "AI", "Semantic Search", "FastAPI", "Vector Embeddings"],
-  },
-  {
-    title: "Personal Resume Website",
-    description: [
-      "Designed and developed a fully responsive personal portfolio and resume website.",
-      "Built with React and styled with Tailwind CSS for a modern, clean, and fast user experience.",
-      "Deployed on Vercel with continuous integration through Git.",
-    ],
-    tags: ["React", "Tailwind CSS", "JavaScript", "Vercel"],
-  },
-]
 
 const education = [
   {
@@ -71,11 +45,9 @@ const languages = [
 
 const socialLinks = [
   { name: "GitHub", url: "https://github.com/Sumit884-byte", icon: Github },
-  { name: "LinkedIn", url: "https://linkedin.com/in/sa-h-8a9a3a37b", icon: Linkedin },
+  { name: "LinkedIn", url: "https://linkedin.com/in/sumit0rn", icon: Linkedin },
   { name: "Email", url: "mailto:sah299610@gmail.com", icon: Mail },
 ]
-
-// --- Enhanced Components ---
 
 interface SectionProps {
   id: string
@@ -93,6 +65,13 @@ interface ProjectCardProps {
   title: string
   description: string[]
   tags: string[]
+  index: number
+  url?: string
+  stars?: number
+}
+
+interface LinkedInPostCardProps {
+  post: LinkedInPost
   index: number
 }
 
@@ -135,7 +114,7 @@ const SkillBadge = ({ skill, index }: SkillBadgeProps) => (
   </motion.span>
 )
 
-const ProjectCard = ({ title, description, tags, index }: ProjectCardProps) => (
+const ProjectCard = ({ title, description, tags, index, url, stars }: ProjectCardProps) => (
   <motion.div
     className="group rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 shadow-2xl border border-neutral-800 hover:border-cyan-500/30 transition-all duration-500 hover:shadow-cyan-500/10"
     initial={{ opacity: 0, y: 30 }}
@@ -144,8 +123,27 @@ const ProjectCard = ({ title, description, tags, index }: ProjectCardProps) => (
     transition={{ duration: 0.6, delay: index * 0.1 }}
     whileHover={{ y: -5 }}
   >
-    <div className="flex justify-between items-start mb-4">
+    <div className="flex justify-between items-start mb-4 gap-4">
       <h3 className="font-bold text-xl text-white group-hover:text-cyan-300 transition-colors">{title}</h3>
+      <div className="flex items-center gap-3 shrink-0">
+        {typeof stars === "number" && (
+          <span className="text-sm text-neutral-400 flex items-center gap-1">
+            <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+            {stars}
+          </span>
+        )}
+        {url && (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-neutral-400 hover:text-cyan-400 transition-colors"
+            aria-label={`View ${title} on GitHub`}
+          >
+            <ExternalLink className="w-5 h-5" />
+          </a>
+        )}
+      </div>
     </div>
     <ul className="list-disc ml-5 space-y-3 text-neutral-400 leading-relaxed">
       {description.map((point: string, pointIndex: number) => (
@@ -163,6 +161,35 @@ const ProjectCard = ({ title, description, tags, index }: ProjectCardProps) => (
       ))}
     </div>
   </motion.div>
+)
+
+const LinkedInPostCard = ({ post, index }: LinkedInPostCardProps) => (
+  <motion.a
+    href={post.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block group rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 shadow-2xl border border-neutral-800 hover:border-cyan-500/30 transition-all duration-500 hover:shadow-cyan-500/10"
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay: index * 0.1 }}
+    whileHover={{ y: -5 }}
+  >
+    <p className="text-neutral-300 leading-relaxed line-clamp-4 group-hover:text-white transition-colors">{post.text}</p>
+    <div className="flex items-center justify-between mt-6 text-sm">
+      <span className="text-cyan-400 font-medium flex items-center gap-2">
+        Read on LinkedIn
+        <ExternalLink className="w-4 h-4" />
+      </span>
+      <span className="text-neutral-500">
+        {new Date(post.date).toLocaleDateString(undefined, {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        })}
+      </span>
+    </div>
+  </motion.a>
 )
 
 const LanguageCard = ({ lang, level, proficiency, index }: LanguageCardProps) => (
@@ -192,6 +219,16 @@ const LanguageCard = ({ lang, level, proficiency, index }: LanguageCardProps) =>
 // --- Main App Component ---
 
 export default function App() {
+  const [content, setContent] = useState<AutoContent>(autoContent as AutoContent)
+
+  useEffect(() => {
+    fetchGitHubProjects()
+      .then((projects) => setContent((current) => mergeAutoContent(projects, current)))
+      .catch(() => {
+        // Keep build-time synced content when live refresh fails.
+      })
+  }, [])
+
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId.toLowerCase())?.scrollIntoView({
       behavior: "smooth",
@@ -329,11 +366,64 @@ export default function App() {
 
           {/* Enhanced Projects */}
           <Section id="projects" title="Projects / Work Done" icon={Briefcase}>
+            <p className="text-neutral-400 mb-6">
+              Auto-synced from{" "}
+              <a
+                href={`https://github.com/${content.githubUsername}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:underline"
+              >
+                github.com/{content.githubUsername}
+              </a>
+            </p>
             <div className="space-y-8">
-              {projects.map((project, index) => (
-                <ProjectCard key={project.title} {...project} index={index} />
+              {content.projects.map((project: GitHubProject, index: number) => (
+                <ProjectCard key={project.url} {...project} index={index} />
               ))}
             </div>
+          </Section>
+
+          {/* LinkedIn Activity */}
+          <Section id="linkedin" title="LinkedIn Activity" icon={Linkedin}>
+            <p className="text-neutral-400 mb-6">
+              Updates from{" "}
+              <a
+                href={`https://linkedin.com/in/${content.linkedinUsername}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:underline"
+              >
+                linkedin.com/in/{content.linkedinUsername}
+              </a>
+            </p>
+            {content.linkedinPosts.length > 0 ? (
+              <div className="space-y-6">
+                {content.linkedinPosts.map((post, index) => (
+                  <LinkedInPostCard key={post.url} post={post} index={index} />
+                ))}
+              </div>
+            ) : (
+              <motion.div
+                className="rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 border border-neutral-800 text-center"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+              >
+                <p className="text-neutral-300 mb-4">
+                  Follow me on LinkedIn for project updates, learning notes, and career milestones.
+                </p>
+                <a
+                  href={`https://linkedin.com/in/${content.linkedinUsername}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium"
+                >
+                  View my LinkedIn profile
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </motion.div>
+            )}
           </Section>
 
           {/* Enhanced Education */}
