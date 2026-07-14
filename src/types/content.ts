@@ -19,6 +19,7 @@ export interface AutoContent {
   syncedAt: string
   githubUsername: string
   linkedinUsername: string
+  profileImage: string
   projects: GitHubProject[]
   linkedinPosts: LinkedInPost[]
 }

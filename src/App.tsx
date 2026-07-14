@@ -1,222 +1,158 @@
-"use client"
-
-import type React from "react"
-import { useEffect, useState } from "react"
-
-import { Briefcase, GraduationCap, Code, Languages, Mail, Github, Linkedin, Star, ExternalLink } from "lucide-react"
+import { useEffect, useMemo, useState, type ReactNode } from "react"
+import { Bot, Brain, Code2, ExternalLink, Github, Linkedin, Mail, Zap } from "lucide-react"
 import { motion } from "framer-motion"
 import autoContent from "./data/auto-content.json"
+import { ARKA_REPO, arkaLinks } from "./config/arka"
 import { fetchGitHubProjects, mergeAutoContent } from "./lib/fetch-content"
-import type { AutoContent, GitHubProject, LinkedInPost } from "./types/content"
+import type { AutoContent, GitHubProject } from "./types/content"
 import "./App.css"
 
-// --- Data ---
-const navLinks = ["Objective", "Skills", "Projects", "LinkedIn", "Education", "Languages"]
-
-const skills = {
-  "Languages & Frameworks": ["Python", "Java", "JavaScript", "React", "FastAPI", "HTML", "CSS", "Tailwind CSS"],
-  "Tools & Platforms": ["Git", "Docker", "VS Code", "Google Cloud Vision"],
-  "Libraries & Concepts": [
-    "PaddleOCR",
-    "OCRmyPDF",
-    "Web Scraping",
-    "Automation",
-    "PDF Processing",
-    "Problem-Solving",
-    "Semantic Search",
-  ],
-}
-
-const education = [
-  {
-    institution: "IITM",
-    degree: "B.Sc. in Data Science",
-    duration: "ongoing",
-    details:
-      "Relevant Coursework: Data Structures, Algorithms, Artificial Intelligence, Linear Algebra, Discrete Mathematics.",
-  },
+const PROJECT_UI_GRADIENTS = [
+  "linear-gradient(160deg, #ff9a3c 0%, #ffd93d 40%, #89c2f0 100%)",
+  "linear-gradient(160deg, #ff6b6b 0%, #ffd6e0 50%, #6bcb77 100%)",
 ]
 
-const languages = [
-  { lang: "English", level: "Fluent", proficiency: 95 },
-  { lang: "Hindi", level: "Native", proficiency: 100 },
-  { lang: "German", level: "Beginner", proficiency: 30 },
+const featuredSkills = [
+  { label: "AI & Data", icon: Brain, gradient: "from-[#ffd6a5] to-[#ffb347]" },
+  { label: "Full Stack", icon: Code2, gradient: "from-[#bde0fe] to-[#89c2f0]" },
+  { label: "Automation", icon: Bot, gradient: "from-[#caffbf] to-[#6bcb77]" },
 ]
 
-const socialLinks = [
-  { name: "GitHub", url: "https://github.com/Sumit884-byte", icon: Github },
-  { name: "LinkedIn", url: "https://linkedin.com/in/sumit0rn", icon: Linkedin },
-  { name: "Email", url: "mailto:sah299610@gmail.com", icon: Mail },
-]
-
-interface SectionProps {
-  id: string
-  title: string
-  icon: React.ComponentType<{ className?: string }>
-  children: React.ReactNode
+function GlassCard({
+  className = "",
+  children,
+  delay = 0,
+}: {
+  className?: string
+  children: ReactNode
+  delay?: number
+}) {
+  return (
+    <motion.div
+      className={`glass-card rounded-[28px] p-5 md:p-6 ${className}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay }}
+    >
+      {children}
+    </motion.div>
+  )
 }
 
-interface SkillBadgeProps {
-  skill: string
-  index: number
-}
-
-interface ProjectCardProps {
-  title: string
-  description: string[]
-  tags: string[]
-  index: number
-  url?: string
-  stars?: number
-}
-
-interface LinkedInPostCardProps {
-  post: LinkedInPost
-  index: number
-}
-
-interface LanguageCardProps {
-  lang: string
-  level: string
-  proficiency: number
-  index: number
-}
-
-const Section = ({ id, title, icon: Icon, children }: SectionProps) => (
-  <motion.section
-    id={id}
-    className="mb-20"
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ duration: 0.6, ease: "easeOut" }}
-  >
-    <div className="flex items-center gap-3 mb-8">
-      <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-        <Icon className="w-6 h-6 text-cyan-400" />
-      </div>
-      <h2 className="text-3xl font-bold text-white">{title}</h2>
+function MeshBackground() {
+  return (
+    <div className="fixed inset-0 z-0 mesh-bg" aria-hidden="true">
+      <div className="absolute inset-0 mesh-grid-overlay" />
     </div>
-    {children}
-  </motion.section>
-)
+  )
+}
 
-const SkillBadge = ({ skill, index }: SkillBadgeProps) => (
-  <motion.span
-    className="px-4 py-2 text-sm rounded-full bg-gradient-to-r from-neutral-800 to-neutral-900 border border-neutral-700 text-neutral-300 hover:border-cyan-500/50 hover:text-cyan-300 transition-all duration-300 cursor-default"
-    initial={{ opacity: 0, scale: 0.8 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.3, delay: index * 0.05 }}
-    whileHover={{ scale: 1.05 }}
-  >
-    {skill}
-  </motion.span>
-)
+function FloatingDecor() {
+  const items = [
+    { type: "star", className: "top-[8%] left-[6%]", delay: 0 },
+    { type: "bracket", className: "top-[18%] right-[8%]", text: "</>", delay: 0.2 },
+    { type: "moon", className: "bottom-[22%] left-[4%]", delay: 0.4 },
+    { type: "star-green", className: "top-[42%] right-[4%]", delay: 0.1 },
+    { type: "bracket", className: "bottom-[12%] right-[10%]", text: "{ }", delay: 0.3 },
+    { type: "star", className: "top-[65%] left-[10%]", delay: 0.5 },
+  ]
 
-const ProjectCard = ({ title, description, tags, index, url, stars }: ProjectCardProps) => (
-  <motion.div
-    className="group rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 shadow-2xl border border-neutral-800 hover:border-cyan-500/30 transition-all duration-500 hover:shadow-cyan-500/10"
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, delay: index * 0.1 }}
-    whileHover={{ y: -5 }}
-  >
-    <div className="flex justify-between items-start mb-4 gap-4">
-      <h3 className="font-bold text-xl text-white group-hover:text-cyan-300 transition-colors">{title}</h3>
-      <div className="flex items-center gap-3 shrink-0">
-        {typeof stars === "number" && (
-          <span className="text-sm text-neutral-400 flex items-center gap-1">
-            <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-            {stars}
-          </span>
-        )}
-        {url && (
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-400 hover:text-cyan-400 transition-colors"
-            aria-label={`View ${title} on GitHub`}
-          >
-            <ExternalLink className="w-5 h-5" />
-          </a>
-        )}
-      </div>
-    </div>
-    <ul className="list-disc ml-5 space-y-3 text-neutral-400 leading-relaxed">
-      {description.map((point: string, pointIndex: number) => (
-        <li key={pointIndex}>{point}</li>
-      ))}
-    </ul>
-    <div className="flex flex-wrap gap-2 mt-6">
-      {tags.map((tag: string, tagIndex: number) => (
-        <span
-          key={tag}
-          className="px-3 py-1 text-xs rounded-full bg-cyan-900/30 text-cyan-300 border border-cyan-800/50 font-medium"
+  return (
+    <>
+      {items.map((item, i) => (
+        <motion.div
+          key={i}
+          className={`float-decor ${item.className}`}
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6 + item.delay, duration: 0.5 }}
         >
-          {tag}
-        </span>
+          {item.type === "star" && <div className="decor-star" />}
+          {item.type === "star-green" && <div className="decor-star decor-star-green" />}
+          {item.type === "moon" && <div className="decor-moon" />}
+          {item.type === "bracket" && <span className="decor-bracket">{item.text}</span>}
+        </motion.div>
       ))}
-    </div>
-  </motion.div>
-)
+    </>
+  )
+}
 
-const LinkedInPostCard = ({ post, index }: LinkedInPostCardProps) => (
-  <motion.a
-    href={post.url}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block group rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 shadow-2xl border border-neutral-800 hover:border-cyan-500/30 transition-all duration-500 hover:shadow-cyan-500/10"
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, delay: index * 0.1 }}
-    whileHover={{ y: -5 }}
-  >
-    <p className="text-neutral-300 leading-relaxed line-clamp-4 group-hover:text-white transition-colors">{post.text}</p>
-    <div className="flex items-center justify-between mt-6 text-sm">
-      <span className="text-cyan-400 font-medium flex items-center gap-2">
-        Read on LinkedIn
-        <ExternalLink className="w-4 h-4" />
-      </span>
-      <span className="text-neutral-500">
-        {new Date(post.date).toLocaleDateString(undefined, {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-        })}
-      </span>
-    </div>
-  </motion.a>
-)
+function PhoneMockup({
+  project,
+  tilt,
+  variant,
+}: {
+  project: GitHubProject
+  tilt: number
+  variant: 0 | 1
+}) {
+  const gradient = PROJECT_UI_GRADIENTS[variant]
 
-const LanguageCard = ({ lang, level, proficiency, index }: LanguageCardProps) => (
-  <motion.div
-    className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800 p-6 rounded-xl hover:border-cyan-500/30 transition-all duration-300"
-    initial={{ opacity: 0, scale: 0.9 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.4, delay: index * 0.1 }}
-  >
-    <div className="flex justify-between items-center mb-3">
-      <p className="font-semibold text-white text-lg">{lang}</p>
-      <p className="text-cyan-400 text-sm font-medium">{level}</p>
-    </div>
-    <div className="w-full bg-neutral-800 rounded-full h-2">
-      <motion.div
-        className="bg-gradient-to-r from-cyan-500 to-cyan-400 h-2 rounded-full"
-        initial={{ width: 0 }}
-        whileInView={{ width: `${proficiency}%` }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: index * 0.2 }}
-      />
-    </div>
-  </motion.div>
-)
+  return (
+    <motion.a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`phone-mockup block w-[110px] md:w-[130px] aspect-[9/18] p-2.5 shrink-0 ${variant === 1 ? "phone-mockup-alt" : ""}`}
+      style={{ rotate: `${tilt}deg` }}
+      whileHover={{ scale: 1.06, rotate: tilt + 3 }}
+      transition={{ type: "spring", stiffness: 260, damping: 18 }}
+    >
+      <div className="h-full w-full rounded-[14px] overflow-hidden relative">
+        <div className="absolute inset-0" style={{ background: gradient }} />
+        <div className="relative h-full w-full p-2.5 flex flex-col">
+          <div className="flex gap-1 mb-2">
+            <span className="w-2 h-2 rounded-full bg-white/80" />
+            <span className="w-2 h-2 rounded-full bg-white/60" />
+            <span className="w-2 h-2 rounded-full bg-white/40" />
+          </div>
+          <div className="flex-1 flex flex-col gap-1.5">
+            <div className="h-6 rounded-lg bg-white/50" />
+            <div className="h-3 rounded-md bg-white/35 w-3/4" />
+            <div className="flex-1 rounded-xl bg-white/25 mt-1" />
+            <div className="flex gap-1">
+              <div className="h-8 flex-1 rounded-lg bg-white/40" />
+              <div className="h-8 flex-1 rounded-lg bg-white/30" />
+            </div>
+          </div>
+          <p className="font-display text-[9px] font-bold text-white/90 mt-2 leading-tight drop-shadow-sm">
+            {project.title}
+          </p>
+        </div>
+      </div>
+    </motion.a>
+  )
+}
 
-// --- Main App Component ---
+function QRCode({ url }: { url: string }) {
+  const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(url)}&bgcolor=fff5e6&color=ff6b35`
+
+  return (
+    <div className="relative w-[140px] h-[140px] mx-auto">
+      <div className="qr-placeholder w-full h-full overflow-hidden">
+        <img
+          src={qrSrc}
+          alt="LinkedIn QR code"
+          className="w-full h-full object-cover rounded-lg"
+          loading="lazy"
+        />
+      </div>
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-md">
+          <Linkedin className="w-5 h-5 text-[#0077b5]" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function sortProjects(projects: GitHubProject[]) {
+  return [...projects].sort((a, b) => {
+    if (a.url === ARKA_REPO) return -1
+    if (b.url === ARKA_REPO) return 1
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+  })
+}
 
 export default function App() {
   const [content, setContent] = useState<AutoContent>(autoContent as AutoContent)
@@ -224,268 +160,199 @@ export default function App() {
   useEffect(() => {
     fetchGitHubProjects()
       .then((projects) => setContent((current) => mergeAutoContent(projects, current)))
-      .catch(() => {
-        // Keep build-time synced content when live refresh fails.
-      })
+      .catch(() => {})
   }, [])
 
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId.toLowerCase())?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    })
-  }
+  const projects = useMemo(() => sortProjects(content.projects), [content.projects])
+  const phoneProjects = projects.filter((p) => p.url !== ARKA_REPO).slice(0, 2)
+  const linkedInUrl = `https://linkedin.com/in/${content.linkedinUsername}`
 
   return (
-    <div className="min-h-screen w-full bg-black text-white selection:bg-cyan-500 selection:text-black">
-      {/* Enhanced Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-black bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5"></div>
-      </div>
+    <div className="min-h-screen relative text-[#2d3436] selection:bg-[#89c2f0] selection:text-[#2d3436]">
+      <MeshBackground />
+      <FloatingDecor />
 
-      {/* Enhanced Navbar */}
-      <header className="sticky top-0 z-50 w-full bg-black/90 backdrop-blur-md border-b border-neutral-800/50">
-        <div className="max-w-6xl mx-auto flex items-center justify-between h-16 px-6">
+      <div className="app-content relative z-10 min-h-screen flex items-center justify-center p-4 md:p-8 lg:p-12 pointer-events-none">
+        <div className="w-full max-w-6xl">
           <motion.div
-            className="font-bold tracking-tight text-lg"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            className="glass-shell p-4 md:p-6 pointer-events-auto"
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            Sumit Mishra — Resume
-          </motion.div>
-          <nav className="hidden md:flex gap-8 text-sm font-medium text-neutral-400">
-            {navLinks.map((link, index) => (
-              <motion.button
-                key={link}
-                onClick={() => scrollToSection(link)}
-                className="hover:text-cyan-400 transition-colors duration-300 relative group"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                {link}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-              </motion.button>
-            ))}
-          </nav>
-        </div>
-      </header>
+            <div className="bento-grid">
+              {/* Hero — large left card */}
+              <GlassCard className="bento-hero !p-0 overflow-hidden min-h-[380px] md:min-h-[480px] flex flex-col" delay={0.1}>
+                <div className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-4 text-center">
+                  <h1 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-3d-rainbow tracking-tight mb-1">
+                    SUMIT.WEB
+                  </h1>
+                  <p className="font-display text-lg md:text-xl font-semibold text-[#2d3436] mb-6">Dream Coder</p>
 
-      <div className="max-w-5xl mx-auto">
-        {/* Enhanced Hero */}
-        <section className="px-6 py-32 text-center space-y-8">
-          <motion.div initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <h1 className="text-6xl md:text-8xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-neutral-200 to-neutral-500 mb-4">
-              Sumit Mishra
-            </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
-          </motion.div>
-
-          <motion.p
-            className="text-neutral-300 text-lg leading-relaxed max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Computer Science & Mathematics student with a passion for building automated pipelines, AI-driven tools, and
-            full-stack applications. Seeking opportunities to apply my technical skills in real-world projects and
-            cutting-edge research.
-          </motion.p>
-
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <a
-              href="mailto:sah299610@gmail.com"
-              className="inline-flex items-center gap-2 bg-white text-black font-semibold px-6 py-3 rounded-lg hover:bg-neutral-200 transition-all duration-300 hover:scale-105 shadow-lg"
-            >
-              <Mail className="w-5 h-5" />
-              Contact Me
-            </a>
-
-            <div className="flex gap-3">
-              {socialLinks.map(({ name, url, icon: Icon }) => (
-                <a
-                  key={name}
-                  href={url}
-                  target={name !== "Email" ? "_blank" : undefined}
-                  rel={name !== "Email" ? "noopener noreferrer" : undefined}
-                  className="p-3 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300"
-                  aria-label={name}
-                >
-                  <Icon className="w-5 h-5 text-neutral-400 hover:text-cyan-400" />
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        </section>
-
-        <main className="px-6 py-16">
-          {/* Objective */}
-          <Section id="objective" title="Career Objective" icon={Star}>
-            <motion.p
-              className="text-neutral-300 text-lg leading-relaxed bg-gradient-to-r from-neutral-900 to-neutral-950 p-8 rounded-2xl border border-neutral-800"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              A highly motivated Computer Science and Mathematics student with hands-on experience in Python, OCR, AI,
-              React, and FastAPI. I am eager to contribute to innovative projects, particularly in the fields of process
-              automation, artificial intelligence, and full-stack development. My goal is to leverage my analytical and
-              problem-solving skills to build efficient and impactful software solutions.
-            </motion.p>
-          </Section>
-
-          {/* Enhanced Skills */}
-          <Section id="skills" title="Technical Skills" icon={Code}>
-            <div className="space-y-8">
-              {Object.entries(skills).map(([category, skillList], categoryIndex) => (
-                <motion.div
-                  key={category}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-                >
-                  <h3 className="font-bold text-xl text-cyan-300 mb-4">{category}</h3>
-                  <div className="flex flex-wrap gap-3">
-                    {skillList.map((skill, index) => (
-                      <SkillBadge key={skill} skill={skill} index={index} />
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </Section>
-
-          {/* Enhanced Projects */}
-          <Section id="projects" title="Projects / Work Done" icon={Briefcase}>
-            <p className="text-neutral-400 mb-6">
-              Auto-synced from{" "}
-              <a
-                href={`https://github.com/${content.githubUsername}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-400 hover:underline"
-              >
-                github.com/{content.githubUsername}
-              </a>
-            </p>
-            <div className="space-y-8">
-              {content.projects.map((project: GitHubProject, index: number) => (
-                <ProjectCard key={project.url} {...project} index={index} />
-              ))}
-            </div>
-          </Section>
-
-          {/* LinkedIn Activity */}
-          <Section id="linkedin" title="LinkedIn Activity" icon={Linkedin}>
-            <p className="text-neutral-400 mb-6">
-              Updates from{" "}
-              <a
-                href={`https://linkedin.com/in/${content.linkedinUsername}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-400 hover:underline"
-              >
-                linkedin.com/in/{content.linkedinUsername}
-              </a>
-            </p>
-            {content.linkedinPosts.length > 0 ? (
-              <div className="space-y-6">
-                {content.linkedinPosts.map((post, index) => (
-                  <LinkedInPostCard key={post.url} post={post} index={index} />
-                ))}
-              </div>
-            ) : (
-              <motion.div
-                className="rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 border border-neutral-800 text-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-              >
-                <p className="text-neutral-300 mb-4">
-                  Follow me on LinkedIn for project updates, learning notes, and career milestones.
-                </p>
-                <a
-                  href={`https://linkedin.com/in/${content.linkedinUsername}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium"
-                >
-                  View my LinkedIn profile
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </motion.div>
-            )}
-          </Section>
-
-          {/* Enhanced Education */}
-          <Section id="education" title="Education" icon={GraduationCap}>
-            {education.map((edu, index) => (
-              <motion.div
-                key={edu.institution}
-                className="rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 border border-neutral-800 hover:border-cyan-500/30 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                  <div>
-                    <h3 className="font-bold text-xl text-white mb-2">{edu.institution}</h3>
-                    <p className="text-cyan-400 text-lg font-medium">{edu.degree}</p>
-                    <p className="text-neutral-400 mt-3 leading-relaxed">{edu.details}</p>
-                  </div>
-                  <div className="text-right">
-                    <span className="inline-block bg-cyan-500/10 text-cyan-300 px-4 py-2 rounded-lg border border-cyan-500/20 font-medium">
-                      {edu.duration}
-                    </span>
+                  <div className="hero-scene w-full flex-1 min-h-[180px]">
+                    <div className="hero-cloud" aria-hidden="true" />
+                    <div className="hero-figure">
+                      <img
+                        src={content.profileImage}
+                        alt="Sumit Mishra — developer portrait"
+                        className="hero-character"
+                        width={100}
+                        height={100}
+                      />
+                      <div className="hero-laptop" aria-hidden="true" />
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </Section>
+              </GlassCard>
 
-          {/* Enhanced Languages */}
-          <Section id="languages" title="Languages" icon={Languages}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {languages.map((lang, index) => (
-                <LanguageCard key={lang.lang} {...lang} index={index} />
-              ))}
-            </div>
-          </Section>
-        </main>
-      </div>
+              {/* Skills — top middle */}
+              <GlassCard className="bento-skills bg-gradient-to-br from-white/55 to-[#caffbf]/25" delay={0.2}>
+                <h2 className="font-display text-base md:text-lg font-bold text-[#2d3436] mb-4 tracking-wide">
+                  SKILLS
+                </h2>
+                <div className="grid grid-cols-3 gap-2 md:gap-3">
+                  {featuredSkills.map(({ label, icon: Icon, gradient }, i) => (
+                    <motion.div
+                      key={label}
+                      className="flex flex-col items-center text-center gap-2"
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.35 + i * 0.08 }}
+                      whileHover={{ y: -4 }}
+                    >
+                      <div
+                        className={`clay-icon w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br ${gradient} flex items-center justify-center`}
+                      >
+                        <Icon className="w-7 h-7 text-[#2d3436]/75" strokeWidth={2.2} />
+                      </div>
+                      <span className="text-[10px] md:text-xs font-bold text-[#2d3436] leading-tight">{label}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </GlassCard>
 
-      {/* Enhanced Footer */}
-      <footer className="w-full bg-gradient-to-r from-neutral-950 to-black border-t border-neutral-800 py-8">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <p className="text-neutral-400 mb-4">
-            © {new Date().getFullYear()} Sumit Mishra. Built with React & Tailwind CSS.
-          </p>
-          <div className="flex justify-center gap-4">
-            {socialLinks.map(({ name, url, icon: Icon }) => (
-              <a
-                key={name}
-                href={url}
-                target={name !== "Email" ? "_blank" : undefined}
-                rel={name !== "Email" ? "noopener noreferrer" : undefined}
-                className="p-2 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300"
-                aria-label={name}
+              {/* Projects — bottom middle */}
+              <GlassCard className="bento-projects bg-gradient-to-br from-white/50 to-[#ffc8dd]/20" delay={0.25}>
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="font-display text-base md:text-lg font-bold text-[#2d3436] tracking-wide">
+                    PROJECTS
+                  </h2>
+                  <a
+                    href={`https://github.com/${content.githubUsername}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] md:text-xs font-bold text-[#636e72] hover:text-[#2d3436] flex items-center gap-1"
+                  >
+                    View all
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+                <div className="flex items-end justify-center gap-4 md:gap-6 py-2 min-h-[160px]">
+                  {phoneProjects.length > 0 ? (
+                    phoneProjects.map((project, i) => (
+                      <PhoneMockup
+                        key={project.url}
+                        project={project}
+                        tilt={i === 0 ? -12 : 12}
+                        variant={i as 0 | 1}
+                      />
+                    ))
+                  ) : (
+                    <>
+                      <div className="phone-mockup w-[110px] aspect-[9/18] opacity-40" />
+                      <div className="phone-mockup phone-mockup-alt w-[110px] aspect-[9/18] opacity-40" />
+                    </>
+                  )}
+                </div>
+              </GlassCard>
+
+              {/* Powered by Arka — right top */}
+              <GlassCard
+                className="bento-arka bg-gradient-to-br from-[#bde0fe]/35 to-white/55 flex flex-col items-center justify-center text-center !py-5"
+                delay={0.3}
               >
-                <Icon className="w-4 h-4 text-neutral-400 hover:text-cyan-400" />
-              </a>
-            ))}
-          </div>
+                <a
+                  href={arkaLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-3 group"
+                >
+                  <div className="arka-cloud-icon">
+                    <div className="cloud-body" />
+                    <div className="lightning" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold text-[#636e72] uppercase tracking-wider mb-0.5">
+                      Powered by
+                    </p>
+                    <p className="font-display text-xl font-bold text-[#2d3436] group-hover:text-[#4aa3cf] transition-colors flex items-center gap-1.5 justify-center">
+                      <Zap className="w-4 h-4 text-[#ffd93d] fill-[#ffd93d]" />
+                      Arka
+                    </p>
+                  </div>
+                </a>
+              </GlassCard>
+
+              {/* Contact — right bottom */}
+              <GlassCard
+                className="bento-contact bg-gradient-to-br from-[#ffd6a5]/25 to-white/55 flex flex-col items-center justify-between gap-4"
+                delay={0.35}
+              >
+                <div className="contact-icon-wrap flex items-center justify-center">
+                  <div className="contact-owl" aria-hidden="true" />
+                  <div className="contact-envelope" aria-hidden="true" />
+                </div>
+
+                <QRCode url={linkedInUrl} />
+
+                <div className="flex gap-2 w-full justify-center">
+                  <a
+                    href={`https://github.com/${content.githubUsername}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="w-9 h-9 rounded-xl bg-white/70 border-2 border-white flex items-center justify-center hover:scale-105 transition-transform isometric-shadow"
+                  >
+                    <Github className="w-4 h-4 text-[#2d3436]" />
+                  </a>
+                  <a
+                    href={linkedInUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="w-9 h-9 rounded-xl bg-white/70 border-2 border-white flex items-center justify-center hover:scale-105 transition-transform isometric-shadow"
+                  >
+                    <Linkedin className="w-4 h-4 text-[#0077b5]" />
+                  </a>
+                  <a
+                    href="mailto:sah299610@gmail.com"
+                    aria-label="Email"
+                    className="w-9 h-9 rounded-xl bg-white/70 border-2 border-white flex items-center justify-center hover:scale-105 transition-transform isometric-shadow"
+                  >
+                    <Mail className="w-4 h-4 text-[#2d3436]" />
+                  </a>
+                </div>
+
+                <a
+                  href="mailto:sah299610@gmail.com"
+                  className="clay-btn clay-btn-orange w-full text-center font-display font-bold py-3 px-6 rounded-full hover:scale-[1.02] transition-transform"
+                >
+                  Say Hi
+                </a>
+              </GlassCard>
+            </div>
+          </motion.div>
+
+          <motion.footer
+            className="text-center mt-6 text-sm font-semibold text-[#636e72]/80"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9 }}
+          >
+            © {new Date().getFullYear()} Sumit Mishra · React · Tailwind · CSS
+          </motion.footer>
         </div>
-      </footer>
+      </div>
     </div>
   )
 }

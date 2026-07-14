@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { writeFileSync, mkdirSync } from "node:fs"
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -10,6 +10,7 @@ const OUTPUT = join(ROOT, "src/data/auto-content.json")
 
 const GITHUB_USERNAME = "Sumit884-byte"
 const LINKEDIN_USERNAME = "sumit0rn"
+const PROFILE_IMAGE = "/images/profile.jpg"
 
 const EXCLUDED_REPOS = new Set(["rsume-site", "resume-site"])
 
@@ -24,6 +25,15 @@ function formatRepoTitle(name) {
     .split(/[-_]/)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ")
+}
+
+function readExistingContent() {
+  if (!existsSync(OUTPUT)) return null
+  try {
+    return JSON.parse(readFileSync(OUTPUT, "utf8"))
+  } catch {
+    return null
+  }
 }
 
 async function fetchJson(url, options = {}) {
@@ -170,13 +180,15 @@ async function fetchLinkedInPosts() {
     return await fetchLinkedInFromApify()
   } catch (error) {
     console.warn("LinkedIn Apify sync skipped:", error.message)
-    return []
   }
+
+  return []
 }
 
 async function main() {
-  let projects = []
-  let linkedinPosts = []
+  const existing = readExistingContent()
+  let projects = existing?.projects ?? []
+  let linkedinPosts = existing?.linkedinPosts ?? []
 
   try {
     console.log(`Syncing GitHub projects for @${GITHUB_USERNAME}...`)
@@ -188,21 +200,20 @@ async function main() {
 
   try {
     console.log(`Syncing LinkedIn posts for @${LINKEDIN_USERNAME}...`)
-    linkedinPosts = await fetchLinkedInPosts()
+    const freshPosts = await fetchLinkedInPosts()
+    if (freshPosts.length > 0) {
+      linkedinPosts = freshPosts
+    }
     console.log(`Found ${linkedinPosts.length} LinkedIn posts.`)
   } catch (error) {
     console.warn("LinkedIn sync failed:", error.message)
-  }
-
-  if (projects.length === 0 && linkedinPosts.length === 0) {
-    console.warn("No fresh content fetched. Keeping existing auto-content.json if present.")
-    process.exit(0)
   }
 
   const payload = {
     syncedAt: new Date().toISOString(),
     githubUsername: GITHUB_USERNAME,
     linkedinUsername: LINKEDIN_USERNAME,
+    profileImage: existing?.profileImage ?? PROFILE_IMAGE,
     projects,
     linkedinPosts,
   }

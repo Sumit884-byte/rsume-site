@@ -1,12 +1,13 @@
 {
-  "syncedAt": "2026-07-14T12:19:39.442Z",
+  "syncedAt": "2026-07-14T13:12:05.321Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
+  "profileImage": "/images/profile.jpg",
   "projects": [
     {
       "title": "Arka",
       "description": [
-        "Natural-language AI agent for your terminal — skills, voice, web answers, and system automation."
+        "Natural-language AI agent for your terminal \u2014 skills, voice, web answers, and system automation."
       ],
       "tags": [
         "Python"
