@@ -1,9 +1,33 @@
 {
-  "syncedAt": "2026-07-14T20:41:29.234Z",
+  "syncedAt": "2026-07-15T08:26:53.843Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Youtube Bulk Downloader",
+      "description": [
+        "A modern web-based interface for bulk downloading YouTube playlists and channels."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/youtube_bulk_downloader",
+      "stars": 1,
+      "updatedAt": "2026-07-15T08:18:32Z",
+      "source": "github"
+    },
+    {
+      "title": "Sumit884 Byte",
+      "description": [
+        "GitHub profile README for Sumit Mishra."
+      ],
+      "tags": [],
+      "url": "https://github.com/Sumit884-byte/Sumit884-byte",
+      "stars": 0,
+      "updatedAt": "2026-07-14T20:42:20Z",
+      "source": "github"
+    },
     {
       "title": "Arka",
       "description": [
@@ -28,19 +52,6 @@
       "url": "https://github.com/Sumit884-byte/docs",
       "stars": 0,
       "updatedAt": "2026-07-10T06:31:58Z",
-      "source": "github"
-    },
-    {
-      "title": "Youtube Bulk Downloader",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/youtube_bulk_downloader",
-      "stars": 1,
-      "updatedAt": "2026-06-13T08:09:25Z",
       "source": "github"
     },
     {
@@ -83,19 +94,6 @@
       "source": "github"
     },
     {
-      "title": "Nvidia Nemotron Model Reasoning Challenge",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "Jupyter Notebook"
-      ],
-      "url": "https://github.com/Sumit884-byte/nvidia-nemotron-model-reasoning-challenge",
-      "stars": 0,
-      "updatedAt": "2026-03-21T10:13:31Z",
-      "source": "github"
-    },
-    {
       "title": "Threejs Demo",
       "description": [
         "Open-source project hosted on GitHub."
@@ -119,17 +117,6 @@
       "url": "https://github.com/Sumit884-byte/gmail_notifier",
       "stars": 0,
       "updatedAt": "2026-02-16T14:10:01Z",
-      "source": "github"
-    },
-    {
-      "title": "Dodo",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [],
-      "url": "https://github.com/Sumit884-byte/dodo",
-      "stars": 0,
-      "updatedAt": "2025-10-02T14:42:56Z",
       "source": "github"
     },
     {
