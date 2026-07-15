@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import autoContent from "./data/auto-content.json"
 import { ARKA_REPO, arkaLinks } from "./config/arka"
 import type { AutoContent, GitHubProject } from "./types/content"
+import FloatingCodeBrackets from "./components/FloatingCodeBrackets"
+import AnimatedHeroTitle from "./components/AnimatedHeroTitle"
 import "./App.css"
 
 const PROJECT_UI_GRADIENTS = [
@@ -171,10 +173,11 @@ export default function App() {
               {/* Hero — large left card */}
               <GlassCard className="bento-hero !p-0 overflow-hidden flex flex-col" delay={0.1}>
                 <div className="hero-content flex-1 flex flex-col items-center justify-center text-center">
-                  <h1 className="hero-title text-3d-rainbow tracking-tight">SUMIT.WEB</h1>
+                  <AnimatedHeroTitle />
                   <p className="hero-subtitle">Dream Coder</p>
 
                   <div className="hero-scene w-full flex-1">
+                    <FloatingCodeBrackets />
                     <div className="hero-cloud" aria-hidden="true" />
                     <div className="hero-figure">
                       <img

@@ -158,6 +158,69 @@ body {
   margin-bottom: 0.25rem;
 }
 
+.hero-title__letter {
+  display: inline-block;
+  transform-origin: center bottom;
+}
+
+.hero-title--animated {
+  animation: hero-rainbow-pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes hero-rainbow-pulse {
+  0%,
+  100% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+
+  50% {
+    filter: hue-rotate(18deg) brightness(1.06);
+  }
+}
+
+/* ── Arka floating code brackets (hero) ── */
+.floating-brackets {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.floating-bracket {
+  position: absolute;
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  color: #2d3436;
+  text-shadow:
+    2px 2px 0 rgba(137, 194, 240, 0.6),
+    4px 4px 0 rgba(255, 217, 61, 0.35);
+  opacity: 0.75;
+}
+
+.floating-bracket--open {
+  top: 12%;
+  left: 10%;
+  font-size: 2rem;
+}
+
+.floating-bracket--close {
+  top: 18%;
+  right: 8%;
+  font-size: 2rem;
+}
+
+.floating-bracket--tag {
+  bottom: 22%;
+  left: 14%;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: #4aa3cf;
+  text-shadow:
+    2px 2px 0 rgba(255, 158, 205, 0.55),
+    4px 4px 0 rgba(137, 194, 240, 0.3);
+}
+
 .hero-subtitle {
   font-family: "Fredoka", sans-serif;
   font-size: 1.125rem;
@@ -815,6 +878,10 @@ body {
   }
 
   .hero-character {
+    animation: none !important;
+  }
+
+  .hero-title--animated {
     animation: none !important;
   }
 }
