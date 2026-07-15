@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 
 type BracketSpec = {
   id: number
@@ -13,7 +13,7 @@ const HERO_BRACKETS: BracketSpec[] = [
   { id: 3, text: "</>", className: "floating-bracket floating-bracket--tag", delay: 0.7 },
 ]
 
-const bracketVariants = {
+const bracketVariants: Variants = {
   hidden: { opacity: 0, y: 16, scale: 0.8 },
   visible: (delay: number) => ({
     opacity: [0.55, 1, 0.65],
@@ -25,7 +25,7 @@ const bracketVariants = {
       delay,
       duration: 4.5,
       repeat: Infinity,
-      repeatType: "mirror" as const,
+      repeatType: "mirror",
       ease: "easeInOut",
     },
   }),
