@@ -1,19 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 
-const LERP = 0.18
-const RING_LERP = 0.1
+const LERP = 0.22
 
 function lerp(current: number, target: number, factor: number) {
   return current + (target - current) * factor
 }
 
 export default function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null)
-  const ringRef = useRef<HTMLDivElement>(null)
-  const trailRef = useRef<HTMLDivElement>(null)
+  const pointerRef = useRef<HTMLDivElement>(null)
+  const glowRef = useRef<HTMLDivElement>(null)
   const pos = useRef({ x: 0, y: 0 })
-  const ringPos = useRef({ x: 0, y: 0 })
-  const trailPos = useRef({ x: 0, y: 0 })
+  const smoothPos = useRef({ x: 0, y: 0 })
   const frame = useRef(0)
   const [active, setActive] = useState(false)
   const [hovering, setHovering] = useState(false)
@@ -43,23 +40,18 @@ export default function CustomCursor() {
     }
 
     const animate = () => {
-      ringPos.current = {
-        x: lerp(ringPos.current.x, pos.current.x, RING_LERP),
-        y: lerp(ringPos.current.y, pos.current.y, RING_LERP),
-      }
-      trailPos.current = {
-        x: lerp(trailPos.current.x, pos.current.x, LERP),
-        y: lerp(trailPos.current.y, pos.current.y, LERP),
+      smoothPos.current = {
+        x: lerp(smoothPos.current.x, pos.current.x, LERP),
+        y: lerp(smoothPos.current.y, pos.current.y, LERP),
       }
 
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${pos.current.x}px, ${pos.current.y}px, 0)`
+      const transform = `translate3d(${smoothPos.current.x}px, ${smoothPos.current.y}px, 0)`
+
+      if (pointerRef.current) {
+        pointerRef.current.style.transform = transform
       }
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0)`
-      }
-      if (trailRef.current) {
-        trailRef.current.style.transform = `translate3d(${trailPos.current.x}px, ${trailPos.current.y}px, 0)`
+      if (glowRef.current) {
+        glowRef.current.style.transform = transform
       }
 
       frame.current = requestAnimationFrame(animate)
@@ -88,10 +80,9 @@ export default function CustomCursor() {
       className={`arka-cursor${visible ? " arka-cursor--visible" : ""}${hovering ? " arka-cursor--hover" : ""}`}
       aria-hidden="true"
     >
-      <div ref={trailRef} className="arka-cursor__trail" />
-      <div ref={ringRef} className="arka-cursor__ring" />
-      <div ref={dotRef} className="arka-cursor__dot">
-        <span className="arka-cursor__spark" />
+      <div ref={glowRef} className="arka-cursor__glow" />
+      <div ref={pointerRef} className="arka-cursor__pointer">
+        <img src="/images/cursor-arrow-3d.png" alt="" draggable={false} />
       </div>
     </div>
   )
