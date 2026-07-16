@@ -1,20 +1,113 @@
 {
-  "syncedAt": "2026-07-15T08:26:53.843Z",
+  "syncedAt": "2026-07-16T08:25:06.404Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
     {
+      "title": "Arka",
+      "description": [
+        "Natural-language AI agent for your terminal — 70+ skills, voice, multi-provider LLM failover, and system automation."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/arka",
+      "stars": 2,
+      "updatedAt": "2026-07-15T20:08:56Z",
+      "source": "github"
+    },
+    {
+      "title": "Threejs Demo",
+      "description": [
+        "Interactive Ferrari 3D landing page built with Next.js 15, Three.js, HDRI lighting, and Tailwind CSS v4."
+      ],
+      "tags": [
+        "TypeScript"
+      ],
+      "url": "https://github.com/Sumit884-byte/threejs_demo",
+      "stars": 1,
+      "updatedAt": "2026-07-15T08:33:49Z",
+      "source": "github"
+    },
+    {
+      "title": "Automations",
+      "description": [
+        "Python automation toolkit — recursive installers, PDF decryption, classifiers, notifications, and utility scripts."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/automations",
+      "stars": 0,
+      "updatedAt": "2026-07-15T08:33:48Z",
+      "source": "github"
+    },
+    {
+      "title": "Stock Analyzer",
+      "description": [
+        "Machine learning models that predict NVIDIA stock direction and volatility from news sentiment and price trends."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/stock_analyzer",
+      "stars": 0,
+      "updatedAt": "2026-07-15T08:33:48Z",
+      "source": "github"
+    },
+    {
+      "title": "Air Pen",
+      "description": [
+        "Draw in the air with your index finger using webcam hand tracking.",
+        "Computer vision app built with MediaPipe and OpenCV."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/air_pen",
+      "stars": 0,
+      "updatedAt": "2026-07-15T08:33:47Z",
+      "source": "github"
+    },
+    {
+      "title": "Gmail Notifier",
+      "description": [
+        "Cross-platform desktop Gmail notifier with multi-account support, click-to-open alerts, and sound notifications.",
+        "Python."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/gmail_notifier",
+      "stars": 0,
+      "updatedAt": "2026-07-15T08:33:46Z",
+      "source": "github"
+    },
+    {
       "title": "Youtube Bulk Downloader",
       "description": [
-        "A modern web-based interface for bulk downloading YouTube playlists and channels."
+        "Web app for bulk-downloading YouTube playlists and channels with parallel downloads, quality options, and live progress."
       ],
       "tags": [
         "Python"
       ],
       "url": "https://github.com/Sumit884-byte/youtube_bulk_downloader",
       "stars": 1,
-      "updatedAt": "2026-07-15T08:18:32Z",
+      "updatedAt": "2026-07-15T08:33:45Z",
+      "source": "github"
+    },
+    {
+      "title": "Charts",
+      "description": [
+        "Interactive chart gallery and data visualization playground built with React, TypeScript, and Vite."
+      ],
+      "tags": [
+        "TypeScript"
+      ],
+      "url": "https://github.com/Sumit884-byte/charts",
+      "stars": 0,
+      "updatedAt": "2026-07-15T08:33:37Z",
       "source": "github"
     },
     {
@@ -26,110 +119,6 @@
       "url": "https://github.com/Sumit884-byte/Sumit884-byte",
       "stars": 0,
       "updatedAt": "2026-07-14T20:42:20Z",
-      "source": "github"
-    },
-    {
-      "title": "Arka",
-      "description": [
-        "Natural-language AI agent for your terminal — skills, voice, web answers, and system automation."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/arka",
-      "stars": 2,
-      "updatedAt": "2026-07-14T17:29:10Z",
-      "source": "github"
-    },
-    {
-      "title": "Docs",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "MDX"
-      ],
-      "url": "https://github.com/Sumit884-byte/docs",
-      "stars": 0,
-      "updatedAt": "2026-07-10T06:31:58Z",
-      "source": "github"
-    },
-    {
-      "title": "Air Pen",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/air_pen",
-      "stars": 0,
-      "updatedAt": "2026-04-15T11:01:40Z",
-      "source": "github"
-    },
-    {
-      "title": "Automations",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/automations",
-      "stars": 0,
-      "updatedAt": "2026-04-14T16:30:34Z",
-      "source": "github"
-    },
-    {
-      "title": "Stock Analyzer",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/stock_analyzer",
-      "stars": 0,
-      "updatedAt": "2026-04-14T15:49:27Z",
-      "source": "github"
-    },
-    {
-      "title": "Threejs Demo",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "TypeScript"
-      ],
-      "url": "https://github.com/Sumit884-byte/threejs_demo",
-      "stars": 1,
-      "updatedAt": "2026-02-23T11:17:49Z",
-      "source": "github"
-    },
-    {
-      "title": "Gmail Notifier",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/gmail_notifier",
-      "stars": 0,
-      "updatedAt": "2026-02-16T14:10:01Z",
-      "source": "github"
-    },
-    {
-      "title": "Charts",
-      "description": [
-        "all charts demo app."
-      ],
-      "tags": [
-        "TypeScript"
-      ],
-      "url": "https://github.com/Sumit884-byte/charts",
-      "stars": 0,
-      "updatedAt": "2025-08-21T19:10:29Z",
       "source": "github"
     }
   ]
