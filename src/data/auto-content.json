@@ -1,9 +1,22 @@
 {
-  "syncedAt": "2026-07-19T08:29:05.895Z",
+  "syncedAt": "2026-07-20T09:28:48.871Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Arka",
+      "description": [
+        "Natural-language AI agent for your terminal — 70+ skills, voice, multi-provider LLM failover, and system automation."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/arka",
+      "stars": 2,
+      "updatedAt": "2026-07-20T09:21:08Z",
+      "source": "github"
+    },
     {
       "title": "Summarize Pdfs",
       "description": [
@@ -28,19 +41,6 @@
       "url": "https://github.com/Sumit884-byte/linkedin_connection_bot",
       "stars": 0,
       "updatedAt": "2026-07-18T07:37:46Z",
-      "source": "github"
-    },
-    {
-      "title": "Arka",
-      "description": [
-        "Natural-language AI agent for your terminal — 70+ skills, voice, multi-provider LLM failover, and system automation."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/arka",
-      "stars": 2,
-      "updatedAt": "2026-07-17T10:18:12Z",
       "source": "github"
     },
     {
