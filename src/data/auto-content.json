@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-23T08:40:48.344Z",
+  "syncedAt": "2026-07-24T08:36:23.517Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
@@ -13,34 +13,37 @@
         "Python"
       ],
       "url": "https://github.com/Sumit884-byte/arka",
-      "stars": 2,
-      "updatedAt": "2026-07-22T07:45:52Z",
-      "source": "github"
-    },
-    {
-      "title": "Linkedin Connection Bot",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/linkedin_connection_bot",
-      "stars": 1,
-      "updatedAt": "2026-07-21T12:15:45Z",
+      "stars": 3,
+      "updatedAt": "2026-07-24T05:01:05Z",
       "source": "github"
     },
     {
       "title": "Summarize Pdfs",
       "description": [
-        "Open-source project hosted on GitHub."
+        "Exam-guided RAG pipeline for textbook study at scale.",
+        "Uses exam papers as ground truth to retrieve and synthesize study material from indexed textbooks (OpenStax)."
       ],
       "tags": [
         "Python"
       ],
       "url": "https://github.com/Sumit884-byte/summarize_pdfs",
       "stars": 0,
-      "updatedAt": "2026-07-19T07:26:04Z",
+      "updatedAt": "2026-07-23T11:22:28Z",
+      "source": "github"
+    },
+    {
+      "title": "Linkedin Connection Bot",
+      "description": [
+        "Automate LinkedIn people search and send connection requests on a daily cap.",
+        "New contacts are appended to a CSV for outreach tracking.",
+        "Runs headless on a schedule (macOS) or interactively via CLI or GUI."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/linkedin_connection_bot",
+      "stars": 1,
+      "updatedAt": "2026-07-23T11:21:46Z",
       "source": "github"
     },
     {
