@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-07-24T08:36:23.517Z",
+  "syncedAt": "2026-07-25T08:17:28.664Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
@@ -10,11 +10,16 @@
         "Natural-language AI agent for your terminal — 70+ skills, voice, multi-provider LLM failover, and system automation."
       ],
       "tags": [
-        "Python"
+        "Python",
+        "ai",
+        "ai-agents",
+        "ai-security",
+        "assistant-chat-bots",
+        "assistant-personnel"
       ],
       "url": "https://github.com/Sumit884-byte/arka",
       "stars": 3,
-      "updatedAt": "2026-07-24T05:01:05Z",
+      "updatedAt": "2026-07-24T11:03:13Z",
       "source": "github"
     },
     {
