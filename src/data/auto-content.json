@@ -1,9 +1,37 @@
 {
-  "syncedAt": "2026-08-01T08:29:53.823Z",
+  "syncedAt": "2026-08-02T08:32:57.822Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Battlebots Analytics",
+      "description": [
+        "BattleBots intelligence dashboard — win rates, sentiment, H2H predictions, powered by Bright Data.",
+        "Live: battlebots-analytics.vercel.app."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/battlebots-analytics",
+      "stars": 0,
+      "updatedAt": "2026-08-01T16:24:41Z",
+      "source": "github"
+    },
+    {
+      "title": "Css Samosa Kitchen",
+      "description": [
+        "Pure CSS samosa kitchen art — no images, no SVG, no JavaScript.",
+        "DEV Frontend Challenge submission."
+      ],
+      "tags": [
+        "CSS"
+      ],
+      "url": "https://github.com/Sumit884-byte/css-samosa-kitchen",
+      "stars": 0,
+      "updatedAt": "2026-08-01T13:37:30Z",
+      "source": "github"
+    },
     {
       "title": "Arka",
       "description": [
@@ -65,19 +93,6 @@
       "source": "github"
     },
     {
-      "title": "Automations",
-      "description": [
-        "Python automation toolkit — recursive installers, PDF decryption, classifiers, notifications, and utility scripts."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/automations",
-      "stars": 0,
-      "updatedAt": "2026-07-15T08:33:48Z",
-      "source": "github"
-    },
-    {
       "title": "Stock Analyzer",
       "description": [
         "Machine learning models that predict NVIDIA stock direction and volatility from news sentiment and price trends."
@@ -86,6 +101,19 @@
         "Python"
       ],
       "url": "https://github.com/Sumit884-byte/stock_analyzer",
+      "stars": 0,
+      "updatedAt": "2026-07-15T08:33:48Z",
+      "source": "github"
+    },
+    {
+      "title": "Automations",
+      "description": [
+        "Python automation toolkit — recursive installers, PDF decryption, classifiers, notifications, and utility scripts."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/automations",
       "stars": 0,
       "updatedAt": "2026-07-15T08:33:48Z",
       "source": "github"
