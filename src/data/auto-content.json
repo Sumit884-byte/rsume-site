@@ -1,9 +1,22 @@
 {
-  "syncedAt": "2026-08-04T08:49:16.755Z",
+  "syncedAt": "2026-08-05T08:46:32.364Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Tasty Noodles",
+      "description": [
+        "SLURP! — Comfort food noodle landing page for DEV Frontend Challenge."
+      ],
+      "tags": [
+        "HTML"
+      ],
+      "url": "https://github.com/Sumit884-byte/tasty_noodles",
+      "stars": 0,
+      "updatedAt": "2026-08-04T11:18:31Z",
+      "source": "github"
+    },
     {
       "title": "Battlebots Analytics",
       "description": [
