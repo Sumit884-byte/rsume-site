@@ -1,9 +1,27 @@
 {
-  "syncedAt": "2026-08-11T07:18:09.609Z",
+  "syncedAt": "2026-08-12T07:42:12.935Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Arka",
+      "description": [
+        "Natural-language AI agent for your terminal — 70+ skills, voice, multi-provider LLM failover, and system automation."
+      ],
+      "tags": [
+        "Python",
+        "ai",
+        "ai-agents",
+        "ai-security",
+        "assistant-chat-bots",
+        "assistant-personnel"
+      ],
+      "url": "https://github.com/Sumit884-byte/arka",
+      "stars": 4,
+      "updatedAt": "2026-08-11T15:54:54Z",
+      "source": "github"
+    },
     {
       "title": "Tasty Noodles",
       "description": [
@@ -43,24 +61,6 @@
       "url": "https://github.com/Sumit884-byte/css-samosa-kitchen",
       "stars": 0,
       "updatedAt": "2026-08-01T13:37:30Z",
-      "source": "github"
-    },
-    {
-      "title": "Arka",
-      "description": [
-        "Natural-language AI agent for your terminal — 70+ skills, voice, multi-provider LLM failover, and system automation."
-      ],
-      "tags": [
-        "Python",
-        "ai",
-        "ai-agents",
-        "ai-security",
-        "assistant-chat-bots",
-        "assistant-personnel"
-      ],
-      "url": "https://github.com/Sumit884-byte/arka",
-      "stars": 4,
-      "updatedAt": "2026-07-26T15:01:27Z",
       "source": "github"
     },
     {
