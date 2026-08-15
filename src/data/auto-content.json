@@ -1,9 +1,22 @@
 {
-  "syncedAt": "2026-08-14T07:41:45.363Z",
+  "syncedAt": "2026-08-15T06:49:32.967Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Computer History",
+      "description": [
+        "ComputeHistory — interactive educational site for computing history."
+      ],
+      "tags": [
+        "JavaScript"
+      ],
+      "url": "https://github.com/Sumit884-byte/computer-history",
+      "stars": 0,
+      "updatedAt": "2026-08-14T16:47:17Z",
+      "source": "github"
+    },
     {
       "title": "Arka",
       "description": [
