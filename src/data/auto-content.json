@@ -1,9 +1,22 @@
 {
-  "syncedAt": "2026-08-21T06:57:27.068Z",
+  "syncedAt": "2026-08-22T06:50:57.889Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Hireability Prediction",
+      "description": [
+        "Personalized hireability score from job demand, layoff supply, and profile signals."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/hireability-prediction",
+      "stars": 0,
+      "updatedAt": "2026-08-21T06:59:45Z",
+      "source": "github"
+    },
     {
       "title": "Arka",
       "description": [
