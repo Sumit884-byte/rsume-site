@@ -1,9 +1,22 @@
 {
-  "syncedAt": "2026-09-09T11:07:20.194Z",
+  "syncedAt": "2026-09-10T11:03:40.088Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Techfocus",
+      "description": [
+        "YouTube tech-lecture watcher: search, watch or listen as audio, playlists/courses, history."
+      ],
+      "tags": [
+        "TypeScript"
+      ],
+      "url": "https://github.com/Sumit884-byte/techfocus",
+      "stars": 1,
+      "updatedAt": "2026-09-09T13:58:22Z",
+      "source": "github"
+    },
     {
       "title": "Arka",
       "description": [
