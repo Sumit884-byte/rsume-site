@@ -1,9 +1,20 @@
 {
-  "syncedAt": "2026-09-15T11:32:16.492Z",
+  "syncedAt": "2026-09-16T11:18:31.447Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Sumit884 Byte",
+      "description": [
+        "GitHub profile README for Sumit Mishra."
+      ],
+      "tags": [],
+      "url": "https://github.com/Sumit884-byte/Sumit884-byte",
+      "stars": 0,
+      "updatedAt": "2026-09-15T12:38:52Z",
+      "source": "github"
+    },
     {
       "title": "Arka",
       "description": [
@@ -222,17 +233,6 @@
       "url": "https://github.com/Sumit884-byte/charts",
       "stars": 0,
       "updatedAt": "2026-07-15T08:33:37Z",
-      "source": "github"
-    },
-    {
-      "title": "Sumit884 Byte",
-      "description": [
-        "GitHub profile README for Sumit Mishra."
-      ],
-      "tags": [],
-      "url": "https://github.com/Sumit884-byte/Sumit884-byte",
-      "stars": 0,
-      "updatedAt": "2026-07-14T20:42:20Z",
       "source": "github"
     }
   ]
