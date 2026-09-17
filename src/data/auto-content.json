@@ -1,18 +1,20 @@
 {
-  "syncedAt": "2026-09-16T11:18:31.447Z",
+  "syncedAt": "2026-09-17T11:26:52.741Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
     {
-      "title": "Sumit884 Byte",
+      "title": "Techfocus",
       "description": [
-        "GitHub profile README for Sumit Mishra."
+        "YouTube tech-lecture watcher: search, watch or listen as audio, playlists/courses, history."
       ],
-      "tags": [],
-      "url": "https://github.com/Sumit884-byte/Sumit884-byte",
-      "stars": 0,
-      "updatedAt": "2026-09-15T12:38:52Z",
+      "tags": [
+        "TypeScript"
+      ],
+      "url": "https://github.com/Sumit884-byte/techfocus",
+      "stars": 1,
+      "updatedAt": "2026-09-17T07:37:45Z",
       "source": "github"
     },
     {
@@ -30,20 +32,18 @@
       ],
       "url": "https://github.com/Sumit884-byte/arka",
       "stars": 4,
-      "updatedAt": "2026-09-14T04:08:58Z",
+      "updatedAt": "2026-09-16T12:26:40Z",
       "source": "github"
     },
     {
-      "title": "Techfocus",
+      "title": "Sumit884 Byte",
       "description": [
-        "YouTube tech-lecture watcher: search, watch or listen as audio, playlists/courses, history."
+        "GitHub profile README for Sumit Mishra."
       ],
-      "tags": [
-        "TypeScript"
-      ],
-      "url": "https://github.com/Sumit884-byte/techfocus",
-      "stars": 1,
-      "updatedAt": "2026-09-09T13:58:22Z",
+      "tags": [],
+      "url": "https://github.com/Sumit884-byte/Sumit884-byte",
+      "stars": 0,
+      "updatedAt": "2026-09-15T12:38:52Z",
       "source": "github"
     },
     {
