@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-09-18T10:59:35.392Z",
+  "syncedAt": "2026-09-19T10:43:26.516Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
@@ -14,7 +14,22 @@
       ],
       "url": "https://github.com/Sumit884-byte/techfocus",
       "stars": 1,
-      "updatedAt": "2026-09-17T07:37:45Z",
+      "updatedAt": "2026-09-18T17:03:26Z",
+      "source": "github"
+    },
+    {
+      "title": "Linkedin Connection Bot",
+      "description": [
+        "Automate LinkedIn people search and send connection requests on a daily cap.",
+        "New contacts are appended to a CSV for outreach tracking.",
+        "Runs headless on a schedule (macOS) or interactively via CLI or GUI."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/linkedin_connection_bot",
+      "stars": 2,
+      "updatedAt": "2026-09-18T12:34:24Z",
       "source": "github"
     },
     {
@@ -125,21 +140,6 @@
       "url": "https://github.com/Sumit884-byte/summarize_pdfs",
       "stars": 0,
       "updatedAt": "2026-07-23T11:22:28Z",
-      "source": "github"
-    },
-    {
-      "title": "Linkedin Connection Bot",
-      "description": [
-        "Automate LinkedIn people search and send connection requests on a daily cap.",
-        "New contacts are appended to a CSV for outreach tracking.",
-        "Runs headless on a schedule (macOS) or interactively via CLI or GUI."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/linkedin_connection_bot",
-      "stars": 1,
-      "updatedAt": "2026-07-23T11:21:46Z",
       "source": "github"
     },
     {
