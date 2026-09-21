@@ -1,9 +1,27 @@
 {
-  "syncedAt": "2026-09-20T11:06:08.619Z",
+  "syncedAt": "2026-09-21T12:34:44.521Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Arka",
+      "description": [
+        "Natural-language AI agent for your terminal — 70+ skills, voice, multi-provider LLM failover, and system automation."
+      ],
+      "tags": [
+        "Python",
+        "ai",
+        "ai-agents",
+        "ai-security",
+        "assistant-chat-bots",
+        "assistant-personnel"
+      ],
+      "url": "https://github.com/Sumit884-byte/arka",
+      "stars": 4,
+      "updatedAt": "2026-09-21T04:09:31Z",
+      "source": "github"
+    },
     {
       "title": "Linkedin Connection Bot",
       "description": [
@@ -30,24 +48,6 @@
       "url": "https://github.com/Sumit884-byte/techfocus",
       "stars": 1,
       "updatedAt": "2026-09-18T17:03:26Z",
-      "source": "github"
-    },
-    {
-      "title": "Arka",
-      "description": [
-        "Natural-language AI agent for your terminal — 70+ skills, voice, multi-provider LLM failover, and system automation."
-      ],
-      "tags": [
-        "Python",
-        "ai",
-        "ai-agents",
-        "ai-security",
-        "assistant-chat-bots",
-        "assistant-personnel"
-      ],
-      "url": "https://github.com/Sumit884-byte/arka",
-      "stars": 4,
-      "updatedAt": "2026-09-16T12:26:40Z",
       "source": "github"
     },
     {
