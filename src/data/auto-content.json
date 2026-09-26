@@ -1,9 +1,22 @@
 {
-  "syncedAt": "2026-09-25T11:37:48.116Z",
+  "syncedAt": "2026-09-26T11:12:30.410Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Dub Movie",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/dub_movie",
+      "stars": 0,
+      "updatedAt": "2026-09-25T14:37:04Z",
+      "source": "github"
+    },
     {
       "title": "Arka",
       "description": [
