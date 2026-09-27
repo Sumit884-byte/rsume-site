@@ -1,22 +1,9 @@
 {
-  "syncedAt": "2026-09-26T11:12:30.410Z",
+  "syncedAt": "2026-09-27T11:50:19.477Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
-    {
-      "title": "Dub Movie",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/dub_movie",
-      "stars": 0,
-      "updatedAt": "2026-09-25T14:37:04Z",
-      "source": "github"
-    },
     {
       "title": "Arka",
       "description": [
@@ -32,7 +19,20 @@
       ],
       "url": "https://github.com/Sumit884-byte/arka",
       "stars": 4,
-      "updatedAt": "2026-09-21T04:09:31Z",
+      "updatedAt": "2026-09-27T08:56:38Z",
+      "source": "github"
+    },
+    {
+      "title": "Dub Movie",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/dub_movie",
+      "stars": 0,
+      "updatedAt": "2026-09-25T14:37:04Z",
       "source": "github"
     },
     {
