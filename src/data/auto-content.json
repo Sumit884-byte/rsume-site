@@ -1,18 +1,20 @@
 {
-  "syncedAt": "2026-10-04T12:09:56.837Z",
+  "syncedAt": "2026-10-05T14:18:27.403Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
     {
-      "title": "Sumit884 Byte",
+      "title": "Kept",
       "description": [
-        "GitHub profile README for Sumit Mishra."
+        "Open-source project hosted on GitHub."
       ],
-      "tags": [],
-      "url": "https://github.com/Sumit884-byte/Sumit884-byte",
+      "tags": [
+        "JavaScript"
+      ],
+      "url": "https://github.com/Sumit884-byte/kept",
       "stars": 0,
-      "updatedAt": "2026-10-04T04:14:51Z",
+      "updatedAt": "2026-10-05T12:29:13Z",
       "source": "github"
     },
     {
@@ -30,7 +32,29 @@
       ],
       "url": "https://github.com/Sumit884-byte/arka",
       "stars": 4,
-      "updatedAt": "2026-10-01T05:38:16Z",
+      "updatedAt": "2026-10-05T04:31:15Z",
+      "source": "github"
+    },
+    {
+      "title": "Browser Agent",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [],
+      "url": "https://github.com/Sumit884-byte/browser_agent",
+      "stars": 0,
+      "updatedAt": "2026-10-05T03:04:24Z",
+      "source": "github"
+    },
+    {
+      "title": "Sumit884 Byte",
+      "description": [
+        "GitHub profile README for Sumit Mishra."
+      ],
+      "tags": [],
+      "url": "https://github.com/Sumit884-byte/Sumit884-byte",
+      "stars": 0,
+      "updatedAt": "2026-10-04T04:14:51Z",
       "source": "github"
     },
     {
