@@ -1,9 +1,20 @@
 {
-  "syncedAt": "2026-10-07T13:06:30.488Z",
+  "syncedAt": "2026-10-08T13:13:40.716Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Sumit884 Byte",
+      "description": [
+        "GitHub profile README for Sumit Mishra."
+      ],
+      "tags": [],
+      "url": "https://github.com/Sumit884-byte/Sumit884-byte",
+      "stars": 0,
+      "updatedAt": "2026-10-08T06:26:17Z",
+      "source": "github"
+    },
     {
       "title": "Kept",
       "description": [
@@ -44,17 +55,6 @@
       "url": "https://github.com/Sumit884-byte/browser_agent",
       "stars": 0,
       "updatedAt": "2026-10-05T03:04:24Z",
-      "source": "github"
-    },
-    {
-      "title": "Sumit884 Byte",
-      "description": [
-        "GitHub profile README for Sumit Mishra."
-      ],
-      "tags": [],
-      "url": "https://github.com/Sumit884-byte/Sumit884-byte",
-      "stars": 0,
-      "updatedAt": "2026-10-04T04:14:51Z",
       "source": "github"
     },
     {
