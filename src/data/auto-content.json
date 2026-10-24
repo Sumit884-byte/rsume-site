@@ -1,9 +1,22 @@
 {
-  "syncedAt": "2026-10-23T11:23:56.487Z",
+  "syncedAt": "2026-10-24T10:43:09.705Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "AgentGuard",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/AgentGuard",
+      "stars": 0,
+      "updatedAt": "2026-10-23T18:24:12Z",
+      "source": "github"
+    },
     {
       "title": "SigmaAgent",
       "description": [
@@ -219,19 +232,6 @@
       "source": "github"
     },
     {
-      "title": "Automations",
-      "description": [
-        "Python automation toolkit — recursive installers, PDF decryption, classifiers, notifications, and utility scripts."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/automations",
-      "stars": 0,
-      "updatedAt": "2026-07-15T08:33:48Z",
-      "source": "github"
-    },
-    {
       "title": "Stock Analyzer",
       "description": [
         "Machine learning models that predict NVIDIA stock direction and volatility from news sentiment and price trends."
@@ -240,6 +240,19 @@
         "Python"
       ],
       "url": "https://github.com/Sumit884-byte/stock_analyzer",
+      "stars": 0,
+      "updatedAt": "2026-07-15T08:33:48Z",
+      "source": "github"
+    },
+    {
+      "title": "Automations",
+      "description": [
+        "Python automation toolkit — recursive installers, PDF decryption, classifiers, notifications, and utility scripts."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/automations",
       "stars": 0,
       "updatedAt": "2026-07-15T08:33:48Z",
       "source": "github"
