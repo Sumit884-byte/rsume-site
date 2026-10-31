@@ -1,9 +1,22 @@
 {
-  "syncedAt": "2026-10-30T12:36:50.506Z",
+  "syncedAt": "2026-10-31T12:03:33.821Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "Scrapwisest",
+      "description": [
+        "A scrap-price copilot for scrap collectors and dealers."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/scrapwisest",
+      "stars": 1,
+      "updatedAt": "2026-10-30T15:33:46Z",
+      "source": "github"
+    },
     {
       "title": "AgentGuard",
       "description": [
