@@ -1,9 +1,22 @@
 {
-  "syncedAt": "2026-11-04T14:13:17.614Z",
+  "syncedAt": "2026-11-05T14:27:30.905Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
+    {
+      "title": "SigmaAgent",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/sigmaAgent",
+      "stars": 1,
+      "updatedAt": "2026-11-05T13:19:21Z",
+      "source": "github"
+    },
     {
       "title": "Scrapwisest",
       "description": [
@@ -28,19 +41,6 @@
       "url": "https://github.com/Sumit884-byte/AgentGuard",
       "stars": 0,
       "updatedAt": "2026-10-23T18:24:12Z",
-      "source": "github"
-    },
-    {
-      "title": "SigmaAgent",
-      "description": [
-        "Open-source project hosted on GitHub."
-      ],
-      "tags": [
-        "Python"
-      ],
-      "url": "https://github.com/Sumit884-byte/sigmaAgent",
-      "stars": 1,
-      "updatedAt": "2026-10-18T18:15:23Z",
       "source": "github"
     },
     {
