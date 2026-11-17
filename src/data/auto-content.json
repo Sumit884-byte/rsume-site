@@ -1,20 +1,20 @@
 {
-  "syncedAt": "2026-11-16T15:29:05.776Z",
+  "syncedAt": "2026-11-17T15:49:23.593Z",
   "githubUsername": "Sumit884-byte",
   "linkedinUsername": "sumit0rn",
   "profileImage": "/images/profile.jpg",
   "projects": [
     {
-      "title": "Paypilot AI",
+      "title": "Threejs Demo",
       "description": [
-        "Open-source project hosted on GitHub."
+        "Interactive Ferrari 3D landing page built with Next.js 15, Three.js, HDRI lighting, and Tailwind CSS v4."
       ],
       "tags": [
-        "Python"
+        "TypeScript"
       ],
-      "url": "https://github.com/Sumit884-byte/Paypilot-AI",
-      "stars": 0,
-      "updatedAt": "2026-11-11T20:23:31Z",
+      "url": "https://github.com/Sumit884-byte/threejs_demo",
+      "stars": 2,
+      "updatedAt": "2026-11-17T08:31:04Z",
       "source": "github"
     },
     {
@@ -27,7 +27,20 @@
       ],
       "url": "https://github.com/Sumit884-byte/sigmaAgent",
       "stars": 1,
-      "updatedAt": "2026-11-05T13:19:21Z",
+      "updatedAt": "2026-11-16T20:58:27Z",
+      "source": "github"
+    },
+    {
+      "title": "Paypilot AI",
+      "description": [
+        "Open-source project hosted on GitHub."
+      ],
+      "tags": [
+        "Python"
+      ],
+      "url": "https://github.com/Sumit884-byte/Paypilot-AI",
+      "stars": 0,
+      "updatedAt": "2026-11-11T20:23:31Z",
       "source": "github"
     },
     {
@@ -242,19 +255,6 @@
       "url": "https://github.com/Sumit884-byte/summarize_pdfs",
       "stars": 0,
       "updatedAt": "2026-07-23T11:22:28Z",
-      "source": "github"
-    },
-    {
-      "title": "Threejs Demo",
-      "description": [
-        "Interactive Ferrari 3D landing page built with Next.js 15, Three.js, HDRI lighting, and Tailwind CSS v4."
-      ],
-      "tags": [
-        "TypeScript"
-      ],
-      "url": "https://github.com/Sumit884-byte/threejs_demo",
-      "stars": 1,
-      "updatedAt": "2026-07-15T08:33:49Z",
       "source": "github"
     },
     {
